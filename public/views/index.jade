@@ -1,5 +1,10 @@
 extends layout
+include mixins/loginForm
 
 block content
-  div#app
-    {{ message }}
+  #app
+    p {{ message }}
+    input(v-model="message")
+    +loginForm
+    p {{ loginEmail }}
+    p {{ loginPass }}
