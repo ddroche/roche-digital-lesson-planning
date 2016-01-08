@@ -11,7 +11,7 @@ var Lesson = Bookshelf.Model.extend({
   idAttribute: 'lesson_id',
   hasTimestamps: true,
   users: function() {
-    return this.belongsToMany(User, 'users-lessons', 'lesson_id', 'user_id');
+    return this.belongsToMany(User, 'users_lessons', 'lesson_id', 'user_id');
   },
   lessonPlans: function() {
     return this.hasMany(LessonPlan, 'plan_id');
@@ -19,3 +19,5 @@ var Lesson = Bookshelf.Model.extend({
 });
 
 module.exports = Lesson;
+
+// include lesson author

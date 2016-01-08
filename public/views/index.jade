@@ -1,10 +1,12 @@
-extends layout
-include mixins/loginForm
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/grid.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
 
-block content
-  #app
-    p {{ message }}
-    input(v-model="message")
-    +loginForm
-    p {{ loginEmail }}
-    p {{ loginPass }}
+  body
+    #app
+      h2 I like beans
+      script(src='build/build.js')
