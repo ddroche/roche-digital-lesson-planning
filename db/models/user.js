@@ -10,14 +10,20 @@ const SALT_WORK_FACTOR = 10;
 var User = Bookshelf.Model.extend({
   tableName: 'users',
   idAttribute: 'user_id',
+  initialize: function() {
+    this.on('saving', this.hashPassword, this);
+  },
   hasSecurePassword: true,
   hashPassword: function(model, attrs, options) {
     return new Promise(function(resolve, reject) {
-      bcrypt.has(model.attributes.password_digest, SALT_WORK_FACTOR, function(err, hash) {
-        if (err ) reject(err);
-        model.set('password_digest', hash);
-        resolve(hash);
-      });
+      bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+        if (err) return next(err);
+        bcrypt.hash(model.attributes.password_digest, salt, function(err, hash) {
+          if (err ) reject(err);
+          model.set('password_digest', hash);
+          resolve(hash);
+        });
+      })
     });
   },
   hasTimestamps: true,

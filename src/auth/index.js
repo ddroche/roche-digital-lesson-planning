@@ -3,8 +3,8 @@ import conf from '../config';
 
 // URL and endpoint constants
 //const API_URL = conf.API_URL;
-const LOGIN_URL = conf.API_URL + 'users/';
-const SIGNUP_URL = conf.API_URL + 'users/';
+const LOGIN_URL = conf.API_URL + '/login';
+const SIGNUP_URL = conf.API_URL + '/signup';
 
 export default {
 

@@ -9750,8 +9750,8 @@
 
 	// URL and endpoint constants
 	//const API_URL = conf.API_URL;
-	var LOGIN_URL = _config2.default.API_URL + 'users/';
-	var SIGNUP_URL = _config2.default.API_URL + 'users/';
+	var LOGIN_URL = _config2.default.API_URL + '/login';
+	var SIGNUP_URL = _config2.default.API_URL + '/signup';
 
 	exports.default = {
 
@@ -9825,7 +9825,7 @@
 	  value: true
 	});
 	var SECRET = 'the roche approche';
-	var API_URL = 'http://localhost:3000/';
+	var API_URL = 'http://localhost:3000';
 
 	exports.default = {
 	  SECRET: SECRET,

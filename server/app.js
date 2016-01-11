@@ -10,6 +10,8 @@ var config = require('./config')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var login = require('./routes/login');
+var signup = require('./routes/signup');
 
 
 var app = express();
@@ -25,16 +27,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(expressJWT({ secret: config.secret }));
-
-
 // include static public files
 app.use(express.static(path.join(__dirname, '../public')));
 
 // include scripts from npm modules
 app.use('/scripts', express.static(path.join(__dirname, '../node_modules/')));
 
-app.use('/users', users);
+//app.use(expressJWT({ secret: config.secret }));
+
+
+var jwtCheck = expressJWT({
+  secret: config.secret
+});
+
+app.use('/login', login);
+app.use('/signup', signup);
+app.use('/api/*', jwtCheck)
+app.use('/api/users', users);
 app.use('/', routes);
 
 
