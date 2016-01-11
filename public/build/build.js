@@ -67,27 +67,27 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Home = __webpack_require__(8);
+	var _Home = __webpack_require__(9);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _SecretQuote = __webpack_require__(11);
+	var _SecretQuote = __webpack_require__(12);
 
 	var _SecretQuote2 = _interopRequireDefault(_SecretQuote);
 
-	var _Signup = __webpack_require__(14);
+	var _Signup = __webpack_require__(15);
 
 	var _Signup2 = _interopRequireDefault(_Signup);
 
-	var _Login = __webpack_require__(17);
+	var _Login = __webpack_require__(18);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _vueRouter = __webpack_require__(20);
+	var _vueRouter = __webpack_require__(21);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-	var _vueResource = __webpack_require__(21);
+	var _vueResource = __webpack_require__(22);
 
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 
@@ -9665,7 +9665,7 @@
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(5)
-	__vue_template__ = __webpack_require__(7)
+	__vue_template__ = __webpack_require__(8)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9742,10 +9742,16 @@
 
 	var _index = __webpack_require__(1);
 
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	// URL and endpoint constants
-	var API_URL = 'http://localhost:3001/';
-	var LOGIN_URL = API_URL + 'sessions/create/';
-	var SIGNUP_URL = API_URL + 'users/';
+	//const API_URL = conf.API_URL;
+	var LOGIN_URL = _config2.default.API_URL + 'users/';
+	var SIGNUP_URL = _config2.default.API_URL + 'users/';
 
 	exports.default = {
 
@@ -9813,15 +9819,32 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<nav class=\"navbar navbar-default\">\n    <div class=\"container\">\n        <ul class=\"nav navbar-nav\">\n            <li><a v-link=\"'home'\">Home</a></li>\n            <li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li>\n            <li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li>\n            <li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li>\n            <li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li>\n        </ul>\n    </div>\n</nav>\n<div class=\"container\">\n    <router-view></router-view>\n</div>\n";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SECRET = 'the roche approche';
+	var API_URL = 'http://localhost:3000/';
+
+	exports.default = {
+	  SECRET: SECRET,
+	  API_URL: API_URL
+	};
 
 /***/ },
 /* 8 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<nav class=\"navbar navbar-default\">\n    <div class=\"container\">\n        <ul class=\"nav navbar-nav\">\n            <li><a v-link=\"'home'\">Home</a></li>\n            <li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li>\n            <li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li>\n            <li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li>\n            <li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li>\n        </ul>\n    </div>\n</nav>\n<div class=\"container\">\n    <router-view></router-view>\n</div>\n";
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(9)
-	__vue_template__ = __webpack_require__(10)
+	__vue_script__ = __webpack_require__(10)
+	__vue_template__ = __webpack_require__(11)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9838,7 +9861,7 @@
 	})()}
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9878,18 +9901,18 @@
 	// </script>
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"col-sm-6 col-sm-offset-3\"><h1>Get a Free Chuck Norris Quote!</h1><button v-on:click=\"getQuote()\" class=\"btn btn-primary\">Get a Quote</button><div v-if=\"quote\" class=\"quote-area\"><h2><blockquote>{{ quote }}</blockquote></h2></div></div>";
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(12)
-	__vue_template__ = __webpack_require__(13)
+	__vue_script__ = __webpack_require__(13)
+	__vue_template__ = __webpack_require__(14)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9906,7 +9929,7 @@
 	})()}
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9961,18 +9984,18 @@
 	// <script>
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"col-sm-6 col-sm-offset-3\">\n  <h1>Get a Secret Chuck Norris Quote!</h1>\n  <button class=\"btn btn-warning\" v-on:click=\"getQuote()\">Get a Quote</button>\n  <div class=\"quote-area\" v-if=\"quote\">\n    <h2><blockquote>{{ quote }}</blockquote></h2>\n  </div>\n</div>\n";
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(15)
-	__vue_template__ = __webpack_require__(16)
+	__vue_script__ = __webpack_require__(16)
+	__vue_template__ = __webpack_require__(17)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9989,7 +10012,7 @@
 	})()}
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10002,30 +10025,12 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = {
-	  data: function data() {
-	    return {
-	      credentials: {
-	        username: '',
-	        password: ''
-	      },
-	      error: ''
-	    };
-	  },
-
-	  methods: {
-	    submit: function submit() {
-	      var credentials = {
-	        username: this.credentials.username,
-	        password: this.credentials.password
-	      };
-	      _auth2.default.signup(this, credentials, 'secretquote');
-	    }
-	  }
-	};
-	// </script>
 	// <template>
 	//   <div class="col-sm-4 col-sm-offset-4">
 	//     <h2>Sign Up</h2>
@@ -10054,51 +10059,6 @@
 	// </template>
 	//
 	// <script>
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"col-sm-4 col-sm-offset-4\">\n  <h2>Sign Up</h2>\n  <p>Sign up for a free account to get some great quotes.</p>\n  <div class=\"alert alert-danger\" v-if=\"error\">\n    <p>{{ error }}</p>\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"text\"\n            class=\"form-control\"\n            placeholder=\"Enter your username\"\n            v-model=\"credentials.username\"\n    >\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"password\"\n            class=\"form-control\"\n            placeholder=\"Enter your password\"\n            v-model=\"credentials.password\"\n    >\n  </div>\n  <button class=\"btn btn-primary\" @click=\"submit()\">Access</button>\n</div>\n";
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(18)
-	__vue_template__ = __webpack_require__(19)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Login.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _auth = __webpack_require__(6);
-
-	var _auth2 = _interopRequireDefault(_auth);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	exports.default = {
 	  data: function data() {
 	    return {
@@ -10116,12 +10076,60 @@
 	        username: this.credentials.username,
 	        password: this.credentials.password
 	      };
-	      _auth2.default.login(this, credentials, 'secretquote');
+	      _auth2.default.signup(this, credentials, _config2.default.SECRET);
 	    }
 	  }
-
 	};
 	// </script>
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"col-sm-4 col-sm-offset-4\">\n  <h2>Sign Up</h2>\n  <p>Sign up for a free account to get some great quotes.</p>\n  <div class=\"alert alert-danger\" v-if=\"error\">\n    <p>{{ error }}</p>\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"text\"\n            class=\"form-control\"\n            placeholder=\"Enter your username\"\n            v-model=\"credentials.username\"\n    >\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"password\"\n            class=\"form-control\"\n            placeholder=\"Enter your password\"\n            v-model=\"credentials.password\"\n    >\n  </div>\n  <button class=\"btn btn-primary\" @click=\"submit()\">Access</button>\n</div>\n";
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(19)
+	__vue_template__ = __webpack_require__(20)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Login.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	// <template>
 	//   <div class="col-sm-4 col-sm-offset-4">
 	//     <h2>Log In</h2>
@@ -10150,15 +10158,38 @@
 	// </template>
 	//
 	// <script>
+	exports.default = {
+	  data: function data() {
+	    return {
+	      credentials: {
+	        username: '',
+	        password: ''
+	      },
+	      error: ''
+	    };
+	  },
+
+	  methods: {
+	    submit: function submit() {
+	      var credentials = {
+	        username: this.credentials.username,
+	        password: this.credentials.password
+	      };
+	      _auth2.default.login(this, credentials, _config2.default.SECRET);
+	    }
+	  }
+
+	};
+	// </script>
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"col-sm-4 col-sm-offset-4\">\n  <h2>Log In</h2>\n  <p>Log in to your account to get some great quotes.</p>\n  <div class=\"alert alert-danger\" v-if=\"error\">\n    <p>{{ error }}</p>\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"text\"\n            class=\"form-control\"\n            placeholder=\"Enter your username\"\n            v-model=\"credentials.username\"\n    >\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"password\"\n            class=\"form-control\"\n            placeholder=\"Enter your password\"\n            v-model=\"credentials.password\"\n    >\n  </div>\n  <button class=\"btn btn-primary\" @click=\"submit()\">Access</button>\n</div>\n";
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12697,7 +12728,7 @@
 	module.exports = Router;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12706,16 +12737,16 @@
 
 	function install(Vue) {
 
-	    var _ = __webpack_require__(22);
+	    var _ = __webpack_require__(23);
 
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 
-	    Vue.url = __webpack_require__(23);
-	    Vue.http = __webpack_require__(29);
-	    Vue.resource = __webpack_require__(44);
-	    Vue.Promise = __webpack_require__(30);
+	    Vue.url = __webpack_require__(24);
+	    Vue.http = __webpack_require__(30);
+	    Vue.resource = __webpack_require__(45);
+	    Vue.Promise = __webpack_require__(31);
 
 	    Object.defineProperties(Vue.prototype, {
 
@@ -12756,7 +12787,7 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	/**
@@ -12884,14 +12915,14 @@
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 
@@ -12927,10 +12958,10 @@
 	 */
 
 	Url.transforms = [
-	    __webpack_require__(24),
-	    __webpack_require__(26),
+	    __webpack_require__(25),
 	    __webpack_require__(27),
-	    __webpack_require__(28)
+	    __webpack_require__(28),
+	    __webpack_require__(29)
 	];
 
 	/**
@@ -13020,14 +13051,14 @@
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 
-	var UrlTemplate = __webpack_require__(25);
+	var UrlTemplate = __webpack_require__(26);
 
 	module.exports = function (options) {
 
@@ -13042,7 +13073,7 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	/**
@@ -13198,14 +13229,14 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	module.exports = function (options, next) {
 
@@ -13250,14 +13281,14 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	module.exports = function (options, next) {
 
@@ -13280,14 +13311,14 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	module.exports = function (options, next) {
 
@@ -13302,17 +13333,17 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 
-	var _ = __webpack_require__(22);
-	var Promise = __webpack_require__(30);
-	var interceptor = __webpack_require__(32);
-	var defaultClient = __webpack_require__(33);
+	var _ = __webpack_require__(23);
+	var Promise = __webpack_require__(31);
+	var interceptor = __webpack_require__(33);
+	var defaultClient = __webpack_require__(34);
 	var jsonType = {'Content-Type': 'application/json'};
 
 	function Http(url, options) {
@@ -13365,13 +13396,13 @@
 	};
 
 	Http.interceptors = [
-	    __webpack_require__(35),
 	    __webpack_require__(36),
 	    __webpack_require__(37),
-	    __webpack_require__(39),
+	    __webpack_require__(38),
 	    __webpack_require__(40),
 	    __webpack_require__(41),
-	    __webpack_require__(42)
+	    __webpack_require__(42),
+	    __webpack_require__(43)
 	];
 
 	Http.headers = {
@@ -13406,15 +13437,15 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 
-	var _ = __webpack_require__(22);
-	var PromiseObj = window.Promise || __webpack_require__(31);
+	var _ = __webpack_require__(23);
+	var PromiseObj = window.Promise || __webpack_require__(32);
 
 	function Promise(executor, context) {
 
@@ -13521,14 +13552,14 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -13706,15 +13737,15 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 
-	var _ = __webpack_require__(22);
-	var Promise = __webpack_require__(30);
+	var _ = __webpack_require__(23);
+	var Promise = __webpack_require__(31);
 
 	module.exports = function (handler, vm) {
 
@@ -13757,14 +13788,14 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Default client.
 	 */
 
-	var xhrClient = __webpack_require__(34);
+	var xhrClient = __webpack_require__(35);
 
 	module.exports = function (request) {
 	    return (request.client || xhrClient)(request);
@@ -13772,15 +13803,15 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 
-	var _ = __webpack_require__(22);
-	var Promise = __webpack_require__(30);
+	var _ = __webpack_require__(23);
+	var Promise = __webpack_require__(31);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -13869,14 +13900,14 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	module.exports = {
 
@@ -13893,7 +13924,7 @@
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	/**
@@ -13929,14 +13960,14 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 
-	var jsonpClient = __webpack_require__(38);
+	var jsonpClient = __webpack_require__(39);
 
 	module.exports = {
 
@@ -13953,15 +13984,15 @@
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 
-	var _ = __webpack_require__(22);
-	var Promise = __webpack_require__(30);
+	var _ = __webpack_require__(23);
+	var Promise = __webpack_require__(31);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -14007,7 +14038,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	/**
@@ -14030,14 +14061,14 @@
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	module.exports = {
 
@@ -14072,14 +14103,14 @@
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	module.exports = {
 
@@ -14104,15 +14135,15 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 
-	var _ = __webpack_require__(22);
-	var xdrClient = __webpack_require__(43);
+	var _ = __webpack_require__(23);
+	var xdrClient = __webpack_require__(44);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 
@@ -14147,15 +14178,15 @@
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 
-	var _ = __webpack_require__(22);
-	var Promise = __webpack_require__(30);
+	var _ = __webpack_require__(23);
+	var Promise = __webpack_require__(31);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -14190,14 +14221,14 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 
-	var _ = __webpack_require__(22);
+	var _ = __webpack_require__(23);
 
 	function Resource(url, params, actions, options) {
 

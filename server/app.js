@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var config = require('./config')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -22,14 +25,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(expressJWT({ secret: config.secret }));
+
+
 // include static public files
 app.use(express.static(path.join(__dirname, '../public')));
 
 // include scripts from npm modules
 app.use('/scripts', express.static(path.join(__dirname, '../node_modules/')));
 
-app.use('/', routes);
 app.use('/users', users);
+app.use('/', routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

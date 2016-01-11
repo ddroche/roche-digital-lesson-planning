@@ -27,6 +27,8 @@
 
 <script>
   import auth from '../auth'
+  import conf from '../config'
+
   export default {
     data() {
       return {
@@ -43,7 +45,7 @@
           username: this.credentials.username,
           password: this.credentials.password
         }
-        auth.login(this, credentials, 'secretquote')
+        auth.login(this, credentials, conf.SECRET)
       }
     }
 

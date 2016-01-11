@@ -1,5 +1,5 @@
-/** ----- USERS ----- **/
-DROP TABLE IF EXISTS users;
+--/** ----- USERS ----- **/
+--DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     user_id serial PRIMARY KEY,
@@ -9,9 +9,9 @@ CREATE TABLE users (
     updated_at timestamp
     );
 
-/** ----- LESSONS ----- **/
+--/** ----- LESSONS ----- **/
 
-DROP TABLE IF EXISTS lessons;
+--DROP TABLE IF EXISTS lessons;
 
 CREATE TABLE lessons (
     lesson_id serial PRIMARY KEY,
@@ -19,18 +19,18 @@ CREATE TABLE lessons (
     lesson_unit varchar(80),
     lesson_number integer,
     lesson_subject varchar(80),
-    materials_required varchar(80)
+    materials_required varchar(80),
     lesson_description varchar(1000),
     created_at timestamp,
     updated_at timestamp
     );
 
-/** ----- USERS-LESSONS ----- **/
-/* Helps form the many-to-many relationship between users and lessons
- * References the users table and lessons table
- */
+--/** ----- USERS-LESSONS ----- **/
+--/* Helps form the many-to-many relationship between users and lessons
+-- * References the users table and lessons table
+-- */
 
-DROP TABLE IF EXISTS users_lessons;
+--DROP TABLE IF EXISTS users_lessons;
 
 CREATE TABLE users_lessons (
     user_id int REFERENCES users,
@@ -40,12 +40,12 @@ CREATE TABLE users_lessons (
     updated_at timestamp
     );
 
-/** ----- LESSON PLANS ----- **/
-/* Foreign key restrain maintains 1-to-many relationship between
- * lesson plan and lessons.
- */
+--/** ----- LESSON PLANS ----- **/
+--/* Foreign key restrain maintains 1-to-many relationship between
+-- * lesson plan and lessons.
+-- */
 
-DROP TABLE IF EXISTS lesson_plans;
+--DROP TABLE IF EXISTS lesson_plans;
 
 CREATE TABLE lesson_plans (
     plan_id serial PRIMARY KEY,
@@ -55,3 +55,10 @@ CREATE TABLE lesson_plans (
     created_at timestamp,
     updated_at timestamp
     );
+
+--SELECT users.email, users.password_digest, lessons.lesson_name FROM users
+--  JOIN users_lessons ON users.user_id = users_lessons.user_id
+--  JOIN lessons ON users_lessons.lesson_id = lessons.lesson_id;
+--
+--  email | password_digest | lesson_name
+--  ------+-----------------+------------
