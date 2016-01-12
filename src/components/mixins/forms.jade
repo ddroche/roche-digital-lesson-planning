@@ -1,0 +1,50 @@
+//- Login form mixin
+
+mixin login
+    .form-horizontal.col-md-12
+        .form-group
+            label(for='inputEmail').col-md-3.control-label Email
+            .col-md-9
+                input(type='email' name='username' id='inputEmail' placeholder='Enter your username' v-model='credentials.username').form-control
+        .form-group
+            label(for='inputPass').col-md-3.control-label Password
+            .col-md-9
+                input(type='password' name='password' id='inputPass' placeholder='Enter your password' v-model='credentials.password').form-control
+        //.form-group
+        //    .col-md-offset-2.col-md-4
+        //        .checkbox
+        //            label.col-md-12
+        //                .col-md-12
+        //                    input(type='checkbox')
+        //                    | Remember me
+        .form-group
+                button(type='submit' @click="submit()").col-md-offset-7.col-md-4.btn.btn-default Sign in
+
+//- End Login form mixin
+
+mixin signup
+    .form-horizontal.col-md-12
+        .form-group
+            label(for='firstName').col-md-3.control-label First Name
+            .col-md-9
+                input(type='text' name='firstName' id='firstName' placeholder='First Name' v-model='credentials.firstName').form-control
+        .form-group
+            label(for='lastName').col-md-3.control-label Last Name
+            .col-md-9
+                input(type='text' name='lastName' id='lastName' placeholder='Last Name' v-model='credentials.lastName').form-control
+        .form-group
+            label(for='gradeLevel').col-md-3.control-label Grade Level
+            .col-md-9
+                select(v-model='credentials.gradeLevel').form-control
+                        - for(var i = 1; i <= 12; i++)
+                             option= i
+        .form-group
+            label(for='inputEmail').col-md-3.control-label Email
+            .col-md-9
+                input(type='email' name='username' id='inputEmail' placeholder='Enter your username' v-model='credentials.username').form-control
+        .form-group
+            label(for='inputPass').col-md-3.control-label Password
+            .col-md-9
+                input(type='password' name='password' id='inputPass' placeholder='Enter your password' v-model='credentials.password').form-control
+        .form-group
+            button(type='submit' @click="submit()").col-md-offset-7.col-md-4.btn.btn-default Register

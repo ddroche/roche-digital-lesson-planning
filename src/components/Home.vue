@@ -1,19 +1,22 @@
 <template lang="jade">
-    include ./mixins/loginForm.jade
-    .col-sm-5.col-sm-offset-1
-        h1 Roche Digital Lesson Planning!
-        h3 An innovative approche to learning
-    .col-md-5.col-md-offset-1
-        h2 Welcome Members!
-        +loginForm
+    include ./mixins/forms.jade
+    div
         .container
-            p.col-md-offset-2 Not a member yet?
-            button.col-md-offset-2(type='submit' @click="submit()").btn.btn-default Register
+            .col-sm-5.col-sm-offset-1
+                h1 Roche Digital Lesson Planning!
+                h3 An innovative approche to learning
+            .col-md-5.col-md-offset-1
+                h2 Welcome Members!
+                +login
+                .row
+                    .col-md-offset-7
+                        button(type='submit' @click="signup()").btn.btn-default Not a member yet?
 </template>
 
 <script>
     import auth from '../auth'
     import conf from '../config'
+    import {router} from '../index';
 
     export default {
         data() {
@@ -37,8 +40,11 @@
                 var credentials = {
                     username: this.credentials.username,
                     password: this.credentials.password
-            }
-            auth.login(this, credentials, 'secretquote')
+                }
+                auth.login(this, credentials, '/secretquote')
+            },
+            signup() {
+                router.go('/signup');
             }
         }
     }

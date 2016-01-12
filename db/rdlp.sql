@@ -1,17 +1,20 @@
 --/** ----- USERS ----- **/
---DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users (
     user_id serial PRIMARY KEY,
+    first_name varchar(80),
+    last_name varchar(80),
+    grade_level integer,
     email varchar(80),
-    password_digest varchar(80),
+    password varchar(80),
     created_at timestamp,
     updated_at timestamp
     );
 
 --/** ----- LESSONS ----- **/
 
---DROP TABLE IF EXISTS lessons;
+DROP TABLE IF EXISTS lessons CASCADE;
 
 CREATE TABLE lessons (
     lesson_id serial PRIMARY KEY,
@@ -30,7 +33,7 @@ CREATE TABLE lessons (
 -- * References the users table and lessons table
 -- */
 
---DROP TABLE IF EXISTS users_lessons;
+DROP TABLE IF EXISTS users_lessons CASCADE;
 
 CREATE TABLE users_lessons (
     user_id int REFERENCES users,
@@ -45,7 +48,7 @@ CREATE TABLE users_lessons (
 -- * lesson plan and lessons.
 -- */
 
---DROP TABLE IF EXISTS lesson_plans;
+DROP TABLE IF EXISTS lesson_plans CASCADE;
 
 CREATE TABLE lesson_plans (
     plan_id serial PRIMARY KEY,

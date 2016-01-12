@@ -13,14 +13,13 @@ var User = Bookshelf.Model.extend({
   initialize: function() {
     this.on('saving', this.hashPassword, this);
   },
-  hasSecurePassword: true,
   hashPassword: function(model, attrs, options) {
     return new Promise(function(resolve, reject) {
       bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
         if (err) return next(err);
-        bcrypt.hash(model.attributes.password_digest, salt, function(err, hash) {
+        bcrypt.hash(model.attributes.password, salt, function(err, hash) {
           if (err ) reject(err);
-          model.set('password_digest', hash);
+          model.set('password', hash);
           resolve(hash);
         });
       })

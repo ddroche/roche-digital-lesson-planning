@@ -100,6 +100,23 @@
 	_vue2.default.use(_vueResource2.default);
 	_vue2.default.use(_vueRouter2.default);
 
+	//
+	//new Vue({
+	//  el: 'body',
+	//  components: {
+	//    App,
+	//    Home,
+	//    SecretQuote,
+	//    Signup,
+	//    Login,
+	//    VueRouter,
+	//    VueResource
+	//  },
+	//  config: {
+	//    debug: true
+	//  }
+	//})
+
 	_vue2.default.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
 
 	// Check the user's auth status when the app starts
@@ -111,7 +128,7 @@
 	  '/home': {
 	    component: _Home2.default
 	  },
-	  'secretquote': {
+	  '/secretquote': {
 	    component: _SecretQuote2.default
 	  },
 	  '/login': {
@@ -9712,21 +9729,22 @@
 	};
 	// </script>
 	// <template lang="jade">
-	//     nav.navbar.navbar-default
+	//     div
+	//         nav.navbar.navbar-default
+	//             .container
+	//                 ul.nav.navbar-nav
+	//                     li
+	//                         a(v-link="'home'") Home
+	//                     li
+	//                         a(v-link="'login'" v-if="!user.authenticated") Login
+	//                     li
+	//                         a(v-link="'signup'" v-if="!user.authenticated") Sign Up
+	//                     li
+	//                         a(v-link="'secretquote'" v-if="user.authenticated") Secret Quote
+	//                     li
+	//                         a(v-link="'login'" v-if="user.authenticated" @click="logout()") Logout
 	//         .container
-	//             ul.nav.navbar-nav
-	//                 li
-	//                     a(v-link="'home'") Home
-	//                 li
-	//                     a(v-link="'login'" v-if="!user.authenticated") Login
-	//                 li
-	//                     a(v-link="'signup'" v-if="!user.authenticated") Sign Up
-	//                 li
-	//                     a(v-link="'secretquote'" v-if="user.authenticated") Secret Quote
-	//                 li
-	//                     a(v-link="'login'" v-if="user.authenticated" @click="logout()") Logout
-	//     .container
-	//         router-view
+	//             router-view
 	// </template>
 	//
 	// <script>
@@ -9825,7 +9843,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var SECRET = 'the roche approche';
+	var SECRET = 'the roches approches';
 	var API_URL = 'http://localhost:3000';
 
 	exports.default = {
@@ -9837,7 +9855,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div>";
+	module.exports = "<div><nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div></div>";
 
 /***/ },
 /* 9 */
@@ -9879,22 +9897,10 @@
 
 	var _config2 = _interopRequireDefault(_config);
 
+	var _index = __webpack_require__(1);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// <template lang="jade">
-	//     include ./mixins/loginForm.jade
-	//     .col-sm-5.col-sm-offset-1
-	//         h1 Roche Digital Lesson Planning!
-	//         h3 An innovative approche to learning
-	//     .col-md-5.col-md-offset-1
-	//         h2 Welcome Members!
-	//         +loginForm
-	//         .container
-	//             p.col-md-offset-2 Not a member yet?
-	//             button.col-md-offset-2(type='submit' @click="submit()").btn.btn-default Register
-	// </template>
-	//
-	// <script>
 	exports.default = {
 	    data: function data() {
 	        return {
@@ -9921,17 +9927,36 @@
 	                username: this.credentials.username,
 	                password: this.credentials.password
 	            };
-	            _auth2.default.login(this, credentials, 'secretquote');
+	            _auth2.default.login(this, credentials, '/secretquote');
+	        },
+	        signup: function signup() {
+	            _index.router.go('/signup');
 	        }
 	    }
 	};
 	// </script>
+	// <template lang="jade">
+	//     include ./mixins/forms.jade
+	//     div
+	//         .container
+	//             .col-sm-5.col-sm-offset-1
+	//                 h1 Roche Digital Lesson Planning!
+	//                 h3 An innovative approche to learning
+	//             .col-md-5.col-md-offset-1
+	//                 h2 Welcome Members!
+	//                 +login
+	//                 .row
+	//                     .col-md-offset-7
+	//                         button(type='submit' @click="signup()").btn.btn-default Not a member yet?
+	// </template>
+	//
+	// <script>
 
 /***/ },
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-sm-5 col-sm-offset-1\"><h1>Roche Digital Lesson Planning!</h1><h3>An innovative approche to learning</h3></div><div class=\"col-md-5 col-md-offset-1\"><h2>Welcome Members!</h2><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-6\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-6\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><div class=\"col-md-offset-2 col-md-4\"><button type=\"submit\" @click=\"submit()\" class=\"btn btn-default\">Sign in</button></div></div></div><div class=\"container\"><p class=\"col-md-offset-2\">Not a member yet?</p><button type=\"submit\" @click=\"submit()\" class=\"col-md-offset-2 btn btn-default\">Register</button></div></div>";
+	module.exports = "<div><div class=\"container\"><div class=\"col-sm-5 col-sm-offset-1\"><h1>Roche Digital Lesson Planning!</h1><h3>An innovative approche to learning</h3></div><div class=\"col-md-5 col-md-offset-1\"><h2>Welcome Members!</h2><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-md-offset-7 col-md-4 btn btn-default\">Sign in</button></div></div><div class=\"row\"><div class=\"col-md-offset-7\"><button type=\"submit\" @click=\"signup()\" class=\"btn btn-default\">Not a member yet?</button></div></div></div></div></div>";
 
 /***/ },
 /* 12 */
@@ -10058,12 +10083,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// <template lang="jade">
-	//    include ./mixins/loginForm.jade
-	//    .container
-	//      h1.col-md-12 Register!
-	//    .row
-	//     +loginForm
+	// <template lang="jade" id="signup-template">
+	//    include ./mixins/forms.jade
+	//    div
+	//      .container
+	//        h1.col-md-12 Register
+	//      .row
+	//       +signup
 	// </template>
 	//
 	// <script>
@@ -10071,6 +10097,9 @@
 	  data: function data() {
 	    return {
 	      credentials: {
+	        firstName: '',
+	        lastName: '',
+	        gradeLevel: '',
 	        username: '',
 	        password: ''
 	      },
@@ -10081,10 +10110,13 @@
 	  methods: {
 	    submit: function submit() {
 	      var credentials = {
+	        firstName: this.credentials.firstName,
+	        lastName: this.credentials.lastName,
+	        gradeLevel: this.credentials.gradeLevel,
 	        username: this.credentials.username,
 	        password: this.credentials.password
 	      };
-	      _auth2.default.signup(this, credentials, 'secretquote');
+	      _auth2.default.signup(this, credentials, '/secretquote');
 	    }
 	  }
 	};
@@ -10094,7 +10126,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container\"><h1 class=\"col-md-12\">Register!</h1></div><div class=\"row\"><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-6\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-6\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><div class=\"col-md-offset-2 col-md-4\"><button type=\"submit\" @click=\"submit()\" class=\"btn btn-default\">Sign in</button></div></div></div></div>";
+	module.exports = "<div><div class=\"container\"><h1 class=\"col-md-12\">Register</h1></div><div class=\"row\"><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"firstName\" class=\"col-md-3 control-label\">First Name</label><div class=\"col-md-9\"><input type=\"text\" name=\"firstName\" id=\"firstName\" placeholder=\"First Name\" v-model=\"credentials.firstName\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lastName\" class=\"col-md-3 control-label\">Last Name</label><div class=\"col-md-9\"><input type=\"text\" name=\"lastName\" id=\"lastName\" placeholder=\"Last Name\" v-model=\"credentials.lastName\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"gradeLevel\" class=\"col-md-3 control-label\">Grade Level</label><div class=\"col-md-9\"><select v-model=\"credentials.gradeLevel\" class=\"form-control\"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div></div><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-md-offset-7 col-md-4 btn btn-default\">Register</button></div></div></div></div>";
 
 /***/ },
 /* 18 */
@@ -10139,11 +10171,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// <template lang="jade">
-	//   include ./mixins/loginForm.jade
-	//   .container
-	//     h1.col-md-12 Login
-	//   .row
-	//     +loginForm
+	//   include ./mixins/forms.jade
+	//   div
+	//     .container
+	//       h1.col-md-12 Login
+	//     .row
+	//       +login
 	// </template>
 	//
 	// <script>
@@ -10164,7 +10197,7 @@
 	        username: this.credentials.username,
 	        password: this.credentials.password
 	      };
-	      _auth2.default.login(this, credentials, 'secretquote');
+	      _auth2.default.login(this, credentials, '/secretquote');
 	    }
 	  }
 
@@ -10175,7 +10208,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container\"><h1 class=\"col-md-12\">Login</h1></div><div class=\"row\"><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-6\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-6\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><div class=\"col-md-offset-2 col-md-4\"><button type=\"submit\" @click=\"submit()\" class=\"btn btn-default\">Sign in</button></div></div></div></div>";
+	module.exports = "<div><div class=\"container\"><h1 class=\"col-md-12\">Login</h1></div><div class=\"row\"><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-md-offset-7 col-md-4 btn btn-default\">Sign in</button></div></div></div></div>";
 
 /***/ },
 /* 21 */

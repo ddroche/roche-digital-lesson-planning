@@ -8,8 +8,11 @@ var bcrypt = require('bcrypt');
 
 router.post('/', function(req, res, next) {
   User.forge({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      grade_level: req.body.gradeLevel,
       email: req.body.username,
-      password_digest: req.body.password
+      password: req.body.password
     })
     .save()
     .then(function(user) {
