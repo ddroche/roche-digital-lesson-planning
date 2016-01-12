@@ -1,0 +1,24 @@
+//- Login form mixin
+
+mixin loginForm
+    .form-horizontal.col-md-12
+        .form-group
+            label(for='inputEmail').col-md-3.control-label Email
+            .col-md-6
+                input(type='email' name='username' id='inputEmail' placeholder='Enter your username' v-model="credentials.username").form-control
+        .form-group
+            label(for='inputPass').col-md-3.control-label Password
+            .col-md-6
+                input(type='password' name='password' id='inputPass' placeholder='Enter your password' v-model='credentials.password').form-control
+        //.form-group
+        //    .col-md-offset-2.col-md-4
+        //        .checkbox
+        //            label.col-md-12
+        //                .col-md-12
+        //                    input(type='checkbox')
+        //                    | Remember me
+        .form-group
+            .col-md-offset-2.col-md-4
+                button(type='submit' @click="submit()").btn.btn-default Sign in
+
+//- End Login form mixin

@@ -9711,21 +9711,22 @@
 	    }
 	};
 	// </script>
-	// <template>
-	//     <nav class="navbar navbar-default">
-	//         <div class="container">
-	//             <ul class="nav navbar-nav">
-	//                 <li><a v-link="'home'">Home</a></li>
-	//                 <li><a v-link="'login'" v-if="!user.authenticated">Login</a></li>
-	//                 <li><a v-link="'signup'" v-if="!user.authenticated">Sign Up</a></li>
-	//                 <li><a v-link="'secretquote'" v-if="user.authenticated">Secret Quote</a></li>
-	//                 <li><a v-link="'login'" v-if="user.authenticated" @click="logout()">Logout</a></li>
-	//             </ul>
-	//         </div>
-	//     </nav>
-	//     <div class="container">
-	//         <router-view></router-view>
-	//     </div>
+	// <template lang="jade">
+	//     nav.navbar.navbar-default
+	//         .container
+	//             ul.nav.navbar-nav
+	//                 li
+	//                     a(v-link="'home'") Home
+	//                 li
+	//                     a(v-link="'login'" v-if="!user.authenticated") Login
+	//                 li
+	//                     a(v-link="'signup'" v-if="!user.authenticated") Sign Up
+	//                 li
+	//                     a(v-link="'secretquote'" v-if="user.authenticated") Secret Quote
+	//                 li
+	//                     a(v-link="'login'" v-if="user.authenticated" @click="logout()") Logout
+	//     .container
+	//         router-view
 	// </template>
 	//
 	// <script>
@@ -9836,7 +9837,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<nav class=\"navbar navbar-default\">\n    <div class=\"container\">\n        <ul class=\"nav navbar-nav\">\n            <li><a v-link=\"'home'\">Home</a></li>\n            <li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li>\n            <li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li>\n            <li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li>\n            <li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li>\n        </ul>\n    </div>\n</nav>\n<div class=\"container\">\n    <router-view></router-view>\n</div>\n";
+	module.exports = "<nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div>";
 
 /***/ },
 /* 9 */
@@ -9862,27 +9863,46 @@
 
 /***/ },
 /* 10 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	// <template lang="jade">
-	//     .col-sm-6.col-sm-offset-3
-	//         h1 Get a Free Chuck Norris Quote!
-	//         button.btn.btn-primary(v-on:click="getQuote()") Get a Quote
-	//         .quote-area(v-if="quote")
-	//             h2
-	//                 blockquote {{ quote }}
+	//     include ./mixins/loginForm.jade
+	//     .col-sm-5.col-sm-offset-1
+	//         h1 Roche Digital Lesson Planning!
+	//         h3 An innovative approche to learning
+	//     .col-md-5.col-md-offset-1
+	//         h2 Welcome Members!
+	//         +loginForm
+	//         .container
+	//             p.col-md-offset-2 Not a member yet?
+	//             button.col-md-offset-2(type='submit' @click="submit()").btn.btn-default Register
 	// </template>
 	//
 	// <script>
 	exports.default = {
 	    data: function data() {
 	        return {
-	            quote: ''
+	            quote: '',
+	            credentials: {
+	                username: '',
+	                password: ''
+	            }
 	        };
 	    },
 
@@ -9895,6 +9915,13 @@
 	            }).error(function (err) {
 	                return console.log(err);
 	            });
+	        },
+	        submit: function submit() {
+	            var credentials = {
+	                username: this.credentials.username,
+	                password: this.credentials.password
+	            };
+	            _auth2.default.login(this, credentials, 'secretquote');
 	        }
 	    }
 	};
@@ -9904,7 +9931,7 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-sm-6 col-sm-offset-3\"><h1>Get a Free Chuck Norris Quote!</h1><button v-on:click=\"getQuote()\" class=\"btn btn-primary\">Get a Quote</button><div v-if=\"quote\" class=\"quote-area\"><h2><blockquote>{{ quote }}</blockquote></h2></div></div>";
+	module.exports = "<div class=\"col-sm-5 col-sm-offset-1\"><h1>Roche Digital Lesson Planning!</h1><h3>An innovative approche to learning</h3></div><div class=\"col-md-5 col-md-offset-1\"><h2>Welcome Members!</h2><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-6\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-6\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><div class=\"col-md-offset-2 col-md-4\"><button type=\"submit\" @click=\"submit()\" class=\"btn btn-default\">Sign in</button></div></div></div><div class=\"container\"><p class=\"col-md-offset-2\">Not a member yet?</p><button type=\"submit\" @click=\"submit()\" class=\"col-md-offset-2 btn btn-default\">Register</button></div></div>";
 
 /***/ },
 /* 12 */
@@ -10031,31 +10058,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// <template>
-	//   <div class="col-sm-4 col-sm-offset-4">
-	//     <h2>Sign Up</h2>
-	//     <p>Sign up for a free account to get some great quotes.</p>
-	//     <div class="alert alert-danger" v-if="error">
-	//       <p>{{ error }}</p>
-	//     </div>
-	//     <div class="form-group">
-	//       <input
-	//               type="text"
-	//               class="form-control"
-	//               placeholder="Enter your username"
-	//               v-model="credentials.username"
-	//       >
-	//     </div>
-	//     <div class="form-group">
-	//       <input
-	//               type="password"
-	//               class="form-control"
-	//               placeholder="Enter your password"
-	//               v-model="credentials.password"
-	//       >
-	//     </div>
-	//     <button class="btn btn-primary" @click="submit()">Access</button>
-	//   </div>
+	// <template lang="jade">
+	//    include ./mixins/loginForm.jade
+	//    .container
+	//      h1.col-md-12 Register!
+	//    .row
+	//     +loginForm
 	// </template>
 	//
 	// <script>
@@ -10076,7 +10084,7 @@
 	        username: this.credentials.username,
 	        password: this.credentials.password
 	      };
-	      _auth2.default.signup(this, credentials, _config2.default.SECRET);
+	      _auth2.default.signup(this, credentials, 'secretquote');
 	    }
 	  }
 	};
@@ -10086,7 +10094,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"col-sm-4 col-sm-offset-4\">\n  <h2>Sign Up</h2>\n  <p>Sign up for a free account to get some great quotes.</p>\n  <div class=\"alert alert-danger\" v-if=\"error\">\n    <p>{{ error }}</p>\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"text\"\n            class=\"form-control\"\n            placeholder=\"Enter your username\"\n            v-model=\"credentials.username\"\n    >\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"password\"\n            class=\"form-control\"\n            placeholder=\"Enter your password\"\n            v-model=\"credentials.password\"\n    >\n  </div>\n  <button class=\"btn btn-primary\" @click=\"submit()\">Access</button>\n</div>\n";
+	module.exports = "<div class=\"container\"><h1 class=\"col-md-12\">Register!</h1></div><div class=\"row\"><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-6\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-6\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><div class=\"col-md-offset-2 col-md-4\"><button type=\"submit\" @click=\"submit()\" class=\"btn btn-default\">Sign in</button></div></div></div></div>";
 
 /***/ },
 /* 18 */
@@ -10130,31 +10138,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// <template>
-	//   <div class="col-sm-4 col-sm-offset-4">
-	//     <h2>Log In</h2>
-	//     <p>Log in to your account to get some great quotes.</p>
-	//     <div class="alert alert-danger" v-if="error">
-	//       <p>{{ error }}</p>
-	//     </div>
-	//     <div class="form-group">
-	//       <input
-	//               type="text"
-	//               class="form-control"
-	//               placeholder="Enter your username"
-	//               v-model="credentials.username"
-	//       >
-	//     </div>
-	//     <div class="form-group">
-	//       <input
-	//               type="password"
-	//               class="form-control"
-	//               placeholder="Enter your password"
-	//               v-model="credentials.password"
-	//       >
-	//     </div>
-	//     <button class="btn btn-primary" @click="submit()">Access</button>
-	//   </div>
+	// <template lang="jade">
+	//   include ./mixins/loginForm.jade
+	//   .container
+	//     h1.col-md-12 Login
+	//   .row
+	//     +loginForm
 	// </template>
 	//
 	// <script>
@@ -10175,7 +10164,7 @@
 	        username: this.credentials.username,
 	        password: this.credentials.password
 	      };
-	      _auth2.default.login(this, credentials, _config2.default.SECRET);
+	      _auth2.default.login(this, credentials, 'secretquote');
 	    }
 	  }
 
@@ -10186,7 +10175,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"col-sm-4 col-sm-offset-4\">\n  <h2>Log In</h2>\n  <p>Log in to your account to get some great quotes.</p>\n  <div class=\"alert alert-danger\" v-if=\"error\">\n    <p>{{ error }}</p>\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"text\"\n            class=\"form-control\"\n            placeholder=\"Enter your username\"\n            v-model=\"credentials.username\"\n    >\n  </div>\n  <div class=\"form-group\">\n    <input\n            type=\"password\"\n            class=\"form-control\"\n            placeholder=\"Enter your password\"\n            v-model=\"credentials.password\"\n    >\n  </div>\n  <button class=\"btn btn-primary\" @click=\"submit()\">Access</button>\n</div>\n";
+	module.exports = "<div class=\"container\"><h1 class=\"col-md-12\">Login</h1></div><div class=\"row\"><div class=\"form-horizontal col-md-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-md-3 control-label\">Email</label><div class=\"col-md-6\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-md-3 control-label\">Password</label><div class=\"col-md-6\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-md-offset-2.col-md-4--><!--        .checkbox--><!--            label.col-md-12--><!--                .col-md-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><div class=\"col-md-offset-2 col-md-4\"><button type=\"submit\" @click=\"submit()\" class=\"btn btn-default\">Sign in</button></div></div></div></div>";
 
 /***/ },
 /* 21 */
