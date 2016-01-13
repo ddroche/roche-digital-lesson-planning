@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
       bcrypt.compare(req.body.password, user.get('password'), function(err, response) {
         if (response) {
           var myToken = jwt.sign({ user_id: user.get('user_id')}, config.secret);
-          res.status(200).json({id_token: myToken});
+          res.status(200).json({id_token: myToken, name: user.get('first_name')});
         } else {
           res.sendStatus(401);
         }

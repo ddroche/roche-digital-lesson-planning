@@ -10,7 +10,8 @@ export default {
 
   // User object will let us check authentication status
   user: {
-    authenticated: false
+    authenticated: false,
+    name: ''
   },
 
   // Send a request to the login URL and save the returned JWT
@@ -19,6 +20,7 @@ export default {
       localStorage.setItem('id_token', data.id_token);
 
       this.user.authenticated = true;
+      this.user.name = ' ' + data.name;
 
       // Redirect to a specified route
       if (redirect) {
@@ -35,6 +37,7 @@ export default {
       localStorage.setItem('id_token', data.id_token);
 
       this.user.authenticated = true;
+      this.user.name = ' ' + data.name;
 
       if (redirect) {
         router.go(redirect);
@@ -49,6 +52,7 @@ export default {
   logout() {
     localStorage.removeItem('id_token');
     this.user.authenticated = false;
+    this.user.name = '';
   },
 
   checkAuth() {

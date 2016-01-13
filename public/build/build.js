@@ -100,22 +100,7 @@
 	_vue2.default.use(_vueResource2.default);
 	_vue2.default.use(_vueRouter2.default);
 
-	//
-	//new Vue({
-	//  el: 'body',
-	//  components: {
-	//    App,
-	//    Home,
-	//    SecretQuote,
-	//    Signup,
-	//    Login,
-	//    VueRouter,
-	//    VueResource
-	//  },
-	//  config: {
-	//    debug: true
-	//  }
-	//})
+	_vue2.default.config.debug = true;
 
 	_vue2.default.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
 
@@ -9702,7 +9687,7 @@
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -9715,6 +9700,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
+	    name: "App",
 	    data: function data() {
 	        return {
 	            user: _auth2.default.user
@@ -9733,6 +9719,8 @@
 	//         nav.navbar.navbar-default
 	//             .container
 	//                 ul.nav.navbar-nav
+	//                     li
+	//                         a(v-link="") Welcome{{ user.name }}!
 	//                     li
 	//                         a(v-link="'home'") Home
 	//                     li
@@ -9776,7 +9764,8 @@
 
 	  // User object will let us check authentication status
 	  user: {
-	    authenticated: false
+	    authenticated: false,
+	    name: ''
 	  },
 
 	  // Send a request to the login URL and save the returned JWT
@@ -9787,6 +9776,7 @@
 	      localStorage.setItem('id_token', data.id_token);
 
 	      _this.user.authenticated = true;
+	      _this.user.name = ' ' + data.name;
 
 	      // Redirect to a specified route
 	      if (redirect) {
@@ -9803,6 +9793,7 @@
 	      localStorage.setItem('id_token', data.id_token);
 
 	      _this2.user.authenticated = true;
+	      _this2.user.name = ' ' + data.name;
 
 	      if (redirect) {
 	        _index.router.go(redirect);
@@ -9816,6 +9807,7 @@
 	  logout: function logout() {
 	    localStorage.removeItem('id_token');
 	    this.user.authenticated = false;
+	    this.user.name = '';
 	  },
 	  checkAuth: function checkAuth() {
 	    var jwt = localStorage.getItem('id_token');
@@ -9855,7 +9847,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div><nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div></div>";
+	module.exports = "<div><nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"\">Welcome{{ user.name }}!</a></li><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'secretquote'\" v-if=\"user.authenticated\">Secret Quote</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div></div>";
 
 /***/ },
 /* 9 */
@@ -9902,6 +9894,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
+	    name: "Home",
 	    data: function data() {
 	        return {
 	            quote: '',
@@ -9997,6 +9990,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
+	  name: "SecretQuote",
 	  data: function data() {
 	    return {
 	      quote: ''
@@ -10094,6 +10088,7 @@
 	//
 	// <script>
 	exports.default = {
+	  name: "Signup",
 	  data: function data() {
 	    return {
 	      credentials: {
@@ -10181,6 +10176,7 @@
 	//
 	// <script>
 	exports.default = {
+	  name: "Login",
 	  data: function data() {
 	    return {
 	      credentials: {

@@ -19,6 +19,7 @@
     import {router} from '../index';
 
     export default {
+        name: "Home",
         data() {
             return {
                 quote: '',

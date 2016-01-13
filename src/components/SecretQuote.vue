@@ -10,7 +10,9 @@
 
 <script>
   import auth from '../auth'
+
   export default {
+    name: "SecretQuote",
     data() {
       return {
         quote: ''

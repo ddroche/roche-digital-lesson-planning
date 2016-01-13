@@ -12,6 +12,7 @@
   import conf from '../config'
 
   export default {
+    name: "Login",
     data() {
       return {
         credentials: {

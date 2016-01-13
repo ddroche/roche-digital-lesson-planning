@@ -4,6 +4,8 @@
             .container
                 ul.nav.navbar-nav
                     li
+                        a(v-link="") Welcome{{ user.name }}!
+                    li
                         a(v-link="'home'") Home
                     li
                         a(v-link="'login'" v-if="!user.authenticated") Login
@@ -21,6 +23,7 @@
     import auth from '../auth'
 
     export default {
+        name: "App",
         data() {
             return {
                 user: auth.user
