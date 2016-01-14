@@ -2,7 +2,7 @@
   include ./mixins/forms.jade
   div
     .container
-      h1.col-md-12 Login
+      h1.col-sm-12 Login
     .row
       +login
 </template>
@@ -28,7 +28,7 @@
           username: this.credentials.username,
           password: this.credentials.password
         }
-        auth.login(this, credentials, '/secretquote')
+        auth.login(this, credentials, '/profile')
       }
     }
 

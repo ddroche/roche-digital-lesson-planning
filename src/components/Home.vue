@@ -5,11 +5,11 @@
             .col-sm-5.col-sm-offset-1
                 h1 Roche Digital Lesson Planning!
                 h3 An innovative approche to learning
-            .col-md-5.col-md-offset-1
+            .col-sm-5.col-sm-offset-1
                 h2 Welcome Members!
                 +login
                 .row
-                    .col-md-offset-7
+                    .col-sm-offset-7
                         button(type='submit' @click="signup()").btn.btn-default Not a member yet?
 </template>
 

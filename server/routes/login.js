@@ -7,6 +7,9 @@ var config = require('../config.json');
 var bcrypt = require('bcrypt');
 
 router.post('/', function(req, res, next) {
+  if (req.body.username == null|| req.body.password == null){
+    throw 'Please include username and password';
+  }
   User.where('email', req.body.username)
     .fetch()
     .then(function(user) {
@@ -20,6 +23,9 @@ router.post('/', function(req, res, next) {
         } else {
           res.sendStatus(401);
         }
+      }).catch(function(err) {
+        console.log('User not logged in');
+        console.error(err);
       })
 
 

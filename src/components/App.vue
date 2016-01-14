@@ -12,7 +12,7 @@
                     li
                         a(v-link="'signup'" v-if="!user.authenticated") Sign Up
                     li
-                        a(v-link="'secretquote'" v-if="user.authenticated") Secret Quote
+                        a(v-link="'profile'" v-if="user.authenticated") Profile
                     li
                         a(v-link="'login'" v-if="user.authenticated" @click="logout()") Logout
         .container

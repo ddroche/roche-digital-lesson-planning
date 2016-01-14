@@ -1,0 +1,14 @@
+//- sidebar mixin
+mixin sidebar
+  .col-sm-2.sidebar
+    ul.nav.nav-pills.nav-stacked
+      li
+        a(v-link="") Hello,{{ user.name }}!
+      li
+        a(v-link="'lessons'") Lessons
+      li
+        a(v-link="'lessonplans'") Lesson Plans
+      li
+        a(v-link="'calendar'") Calendar
+
+//- sidebar mixin

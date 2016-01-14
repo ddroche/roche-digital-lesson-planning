@@ -2,7 +2,7 @@
    include ./mixins/forms.jade
    div
      .container
-       h1.col-md-12 Register
+       h1.col-sm-12 Register
      .row
       +signup
 </template>
@@ -34,7 +34,7 @@
           username: this.credentials.username,
           password: this.credentials.password
         }
-        auth.signup(this, credentials, '/secretquote')
+        auth.signup(this, credentials, '/profile')
       }
     }
   }

@@ -22,11 +22,11 @@
       getQuote() {
         this.$http
                 .get('http://localhost:3001/api/protected/random-quote', (data) => {
-          this.quote = data;
-      }, {
-          headers: auth.getAuthHeader()
-        })
-      .error((err) => console.log(err))
+                  this.quote = data;
+                }, {
+                  headers: auth.getAuthHeader()
+                })
+                .error((err) => console.log(err))
       }
     },
     route: {
