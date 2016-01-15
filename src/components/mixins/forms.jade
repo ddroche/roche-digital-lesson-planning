@@ -18,7 +18,7 @@ mixin login
         //                    input(type='checkbox')
         //                    | Remember me
         .form-group
-                button(type='submit' @click="submit()").col-sm-offset-7.col-sm-4.btn.btn-default Sign in
+                button(type='submit' @click.prevent="submit()").col-sm-offset-7.col-sm-4.btn.btn-default Sign in
 
 //- End Login form
 
