@@ -10,6 +10,7 @@
 <script>
   import auth from '../auth'
   import conf from '../config'
+  import validator from 'vue-validator'
 
   export default {
     name: "Signup",
@@ -36,6 +37,9 @@
         }
         auth.signup(this, credentials, '/profile')
       }
+    },
+    components: {
+      validator
     }
   }
 </script>

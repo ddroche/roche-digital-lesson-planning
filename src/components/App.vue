@@ -21,6 +21,7 @@
 
 <script>
     import auth from '../auth'
+    import { profile as Profile } from './Profile.vue'
 
     export default {
         name: "App",
@@ -35,6 +36,9 @@
             logout() {
                 auth.logout()
             }
+        },
+        components: {
+            Profile
         }
     }
 </script>

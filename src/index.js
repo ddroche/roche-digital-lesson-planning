@@ -13,13 +13,20 @@ import Lessons from './components/Lessons.vue'
 // Plugins
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import validator from 'vue-validator'
+Vue.use(validator)
 Vue.use(VueResource)
 Vue.use(VueRouter)
+
 
 // Modules
 import auth from './auth'
 
+// Configuration
+// Debug Mode
 Vue.config.debug = true;
+// warnExpressionErrors off, needed for validation
+Vue.config.warnExpressionErrors = false
 
 Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
 

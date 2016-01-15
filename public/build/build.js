@@ -67,37 +67,41 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Home = __webpack_require__(9);
+	var _Home = __webpack_require__(16);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _SecretQuote = __webpack_require__(12);
+	var _SecretQuote = __webpack_require__(19);
 
 	var _SecretQuote2 = _interopRequireDefault(_SecretQuote);
 
-	var _Signup = __webpack_require__(15);
+	var _Signup = __webpack_require__(22);
 
 	var _Signup2 = _interopRequireDefault(_Signup);
 
-	var _Login = __webpack_require__(18);
+	var _Login = __webpack_require__(29);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _Profile = __webpack_require__(21);
+	var _Profile = __webpack_require__(8);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Lessons = __webpack_require__(25);
+	var _Lessons = __webpack_require__(10);
 
 	var _Lessons2 = _interopRequireDefault(_Lessons);
 
-	var _vueRouter = __webpack_require__(28);
+	var _vueRouter = __webpack_require__(32);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-	var _vueResource = __webpack_require__(29);
+	var _vueResource = __webpack_require__(33);
 
 	var _vueResource2 = _interopRequireDefault(_vueResource);
+
+	var _vueValidator = __webpack_require__(24);
+
+	var _vueValidator2 = _interopRequireDefault(_vueValidator);
 
 	var _auth = __webpack_require__(6);
 
@@ -105,18 +109,23 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// Components
+
+	_vue2.default.use(_vueValidator2.default);
+
 	// Plugins
 	// Vue
 
 	_vue2.default.use(_vueResource2.default);
-
-	// Components
-
 	_vue2.default.use(_vueRouter2.default);
 
 	// Modules
 
+	// Configuration
+	// Debug Mode
 	_vue2.default.config.debug = true;
+	// warnExpressionErrors off, needed for validation
+	_vue2.default.config.warnExpressionErrors = false;
 
 	_vue2.default.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
 
@@ -9689,7 +9698,7 @@
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(5)
-	__vue_template__ = __webpack_require__(8)
+	__vue_template__ = __webpack_require__(15)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9709,7 +9718,7 @@
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -9719,23 +9728,10 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
+	var _Profile = __webpack_require__(8);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = {
-	    name: "App",
-	    data: function data() {
-	        return {
-	            user: _auth2.default.user
-	        };
-	    },
-
-	    methods: {
-	        logout: function logout() {
-	            _auth2.default.logout();
-	        }
-	    }
-	};
-	// </script>
 	// <template lang="jade">
 	//     div
 	//         nav.navbar.navbar-default
@@ -9758,6 +9754,24 @@
 	// </template>
 	//
 	// <script>
+	exports.default = {
+	    name: "App",
+	    data: function data() {
+	        return {
+	            user: _auth2.default.user
+	        };
+	    },
+
+	    methods: {
+	        logout: function logout() {
+	            _auth2.default.logout();
+	        }
+	    },
+	    components: {
+	        Profile: _Profile.profile
+	    }
+	};
+	// </script>
 
 /***/ },
 /* 6 */
@@ -9867,374 +9881,11 @@
 
 /***/ },
 /* 8 */
-/***/ function(module, exports) {
-
-	module.exports = "<div><nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"\">Welcome{{ user.name }}!</a></li><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'profile'\" v-if=\"user.authenticated\">Profile</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div></div>";
-
-/***/ },
-/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(10)
-	__vue_template__ = __webpack_require__(11)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Home.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _auth = __webpack_require__(6);
-
-	var _auth2 = _interopRequireDefault(_auth);
-
-	var _config = __webpack_require__(7);
-
-	var _config2 = _interopRequireDefault(_config);
-
-	var _index = __webpack_require__(1);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = {
-	    name: "Home",
-	    data: function data() {
-	        return {
-	            quote: '',
-	            credentials: {
-	                username: '',
-	                password: ''
-	            }
-	        };
-	    },
-
-	    methods: {
-	        getQuote: function getQuote() {
-	            var _this = this;
-
-	            this.$http.get('http://localhost:3001/api/random-quote', function (data) {
-	                _this.quote = data;
-	            }).error(function (err) {
-	                return console.log(err);
-	            });
-	        },
-	        submit: function submit() {
-	            var credentials = {
-	                username: this.credentials.username,
-	                password: this.credentials.password
-	            };
-	            _auth2.default.login(this, credentials, '/secretquote');
-	        },
-	        signup: function signup() {
-	            _index.router.go('/signup');
-	        }
-	    }
-	};
-	// </script>
-	// <template lang="jade">
-	//     include ./mixins/forms.jade
-	//     div
-	//         .container
-	//             .col-sm-5.col-sm-offset-1
-	//                 h1 Roche Digital Lesson Planning!
-	//                 h3 An innovative approche to learning
-	//             .col-sm-5.col-sm-offset-1
-	//                 h2 Welcome Members!
-	//                 +login
-	//                 .row
-	//                     .col-sm-offset-7
-	//                         button(type='submit' @click="signup()").btn.btn-default Not a member yet?
-	// </template>
-	//
-	// <script>
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = "<div><div class=\"container\"><div class=\"col-sm-5 col-sm-offset-1\"><h1>Roche Digital Lesson Planning!</h1><h3>An innovative approche to learning</h3></div><div class=\"col-sm-5 col-sm-offset-1\"><h2>Welcome Members!</h2><div class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-sm-offset-2.col-sm-4--><!--        .checkbox--><!--            label.col-sm-12--><!--                .col-sm-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Sign in</button></div></div><div class=\"row\"><div class=\"col-sm-offset-7\"><button type=\"submit\" @click=\"signup()\" class=\"btn btn-default\">Not a member yet?</button></div></div></div></div></div>";
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(13)
+	__vue_script__ = __webpack_require__(9)
 	__vue_template__ = __webpack_require__(14)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/SecretQuote.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _auth = __webpack_require__(6);
-
-	var _auth2 = _interopRequireDefault(_auth);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = {
-	  name: "SecretQuote",
-	  data: function data() {
-	    return {
-	      quote: ''
-	    };
-	  },
-
-	  methods: {
-	    getQuote: function getQuote() {
-	      var _this = this;
-
-	      this.$http.get('http://localhost:3001/api/protected/random-quote', function (data) {
-	        _this.quote = data;
-	      }, {
-	        headers: _auth2.default.getAuthHeader()
-	      }).error(function (err) {
-	        return console.log(err);
-	      });
-	    }
-	  },
-	  route: {
-	    canActivate: function canActivate() {
-	      return _auth2.default.user.authenticated;
-	    }
-	  }
-	};
-	// </script>
-	// <template>
-	//   <div class="col-sm-6 col-sm-offset-3">
-	//     <h1>Get a Secret Chuck Norris Quote!</h1>
-	//     <button class="btn btn-warning" v-on:click="getQuote()">Get a Quote</button>
-	//     <div class="quote-area" v-if="quote">
-	//       <h2><blockquote>{{ quote }}</blockquote></h2>
-	//     </div>
-	//   </div>
-	// </template>
-	//
-	// <script>
-
-/***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"col-sm-6 col-sm-offset-3\">\n  <h1>Get a Secret Chuck Norris Quote!</h1>\n  <button class=\"btn btn-warning\" v-on:click=\"getQuote()\">Get a Quote</button>\n  <div class=\"quote-area\" v-if=\"quote\">\n    <h2><blockquote>{{ quote }}</blockquote></h2>\n  </div>\n</div>\n";
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(16)
-	__vue_template__ = __webpack_require__(17)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Signup.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _auth = __webpack_require__(6);
-
-	var _auth2 = _interopRequireDefault(_auth);
-
-	var _config = __webpack_require__(7);
-
-	var _config2 = _interopRequireDefault(_config);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// <template lang="jade" id="signup-template">
-	//    include ./mixins/forms.jade
-	//    div
-	//      .container
-	//        h1.col-sm-12 Register
-	//      .row
-	//       +signup
-	// </template>
-	//
-	// <script>
-	exports.default = {
-	  name: "Signup",
-	  data: function data() {
-	    return {
-	      credentials: {
-	        firstName: '',
-	        lastName: '',
-	        gradeLevel: '',
-	        username: '',
-	        password: ''
-	      },
-	      error: ''
-	    };
-	  },
-
-	  methods: {
-	    submit: function submit() {
-	      var credentials = {
-	        firstName: this.credentials.firstName,
-	        lastName: this.credentials.lastName,
-	        gradeLevel: this.credentials.gradeLevel,
-	        username: this.credentials.username,
-	        password: this.credentials.password
-	      };
-	      _auth2.default.signup(this, credentials, '/profile');
-	    }
-	  }
-	};
-	// </script>
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	module.exports = "<div><div class=\"container\"><h1 class=\"col-sm-12\">Register</h1></div><div class=\"row\"><div class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"firstName\" class=\"col-sm-3 control-label\">First Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"firstName\" id=\"firstName\" placeholder=\"First Name\" v-model=\"credentials.firstName\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lastName\" class=\"col-sm-3 control-label\">Last Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lastName\" id=\"lastName\" placeholder=\"Last Name\" v-model=\"credentials.lastName\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"gradeLevel\" class=\"col-sm-3 control-label\">Grade Level</label><div class=\"col-sm-9\"><select v-model=\"credentials.gradeLevel\" class=\"form-control\"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div></div><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Register</button></div></div></div></div>";
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(19)
-	__vue_template__ = __webpack_require__(20)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Login.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _auth = __webpack_require__(6);
-
-	var _auth2 = _interopRequireDefault(_auth);
-
-	var _config = __webpack_require__(7);
-
-	var _config2 = _interopRequireDefault(_config);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// <template lang="jade">
-	//   include ./mixins/forms.jade
-	//   div
-	//     .container
-	//       h1.col-sm-12 Login
-	//     .row
-	//       +login
-	// </template>
-	//
-	// <script>
-	exports.default = {
-	  name: "Login",
-	  data: function data() {
-	    return {
-	      credentials: {
-	        username: '',
-	        password: ''
-	      },
-	      error: ''
-	    };
-	  },
-
-	  methods: {
-	    submit: function submit() {
-	      var credentials = {
-	        username: this.credentials.username,
-	        password: this.credentials.password
-	      };
-	      _auth2.default.login(this, credentials, '/profile');
-	    }
-	  }
-
-	};
-	// </script>
-
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-	module.exports = "<div><div class=\"container\"><h1 class=\"col-sm-12\">Login</h1></div><div class=\"row\"><div class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-sm-offset-2.col-sm-4--><!--        .checkbox--><!--            label.col-sm-12--><!--                .col-sm-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Sign in</button></div></div></div></div>";
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(22)
-	__vue_template__ = __webpack_require__(24)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -10251,7 +9902,7 @@
 	})()}
 
 /***/ },
-/* 22 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10264,7 +9915,7 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _vueStrap = __webpack_require__(23);
+	var _Lessons = __webpack_require__(10);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10282,14 +9933,144 @@
 	  props: [],
 	  data: function data() {
 	    return {
+	      user: _auth2.default.user
+	    };
+	  },
+
+	  methods: {},
+	  components: {
+	    Lesson: _Lessons.lesson
+	  }
+	};
+	// </script>
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(11)
+	__vue_template__ = __webpack_require__(13)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Lessons.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _vueStrap = __webpack_require__(12);
+
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var LESSON_URL = _config2.default.API_URL + '/lesson'; // <template lang="jade">
+	// include ./mixins/sidebar.jade
+	// include ./mixins/forms.jade
+	// .row
+	//   +sidebar //- .col-sm-2
+	//   .col-sm-10
+	//     button(@click="addLesson()").btn.btn-default Create Lesson
+	//   modal(:show.sync="showModal").container
+	//     div(slot="modal-header").modal-header
+	//       h4.modal-title Create Lesson
+	//     div(slot="modal-body").modal-body
+	//       +createLesson
+	//     div(slot="modal-footer").modal-footer
+	//       button(type='button' @click="exitLesson()").btn.btn-default Close
+	//       button(type='submit' @click="saveLesson()").btn.btn-primary Save
+	//   div.lessons
+	//     ul
+	//       li(v-for="lesson in lessons") {{ lesson.lesson_name }}
+	// </template>
+	//
+	// <script>
+
+	exports.default = {
+	  name: "Lesson",
+	  props: [],
+	  data: function data() {
+	    return {
+	      lessons: [],
 	      user: _auth2.default.user,
-	      showModal: false
+	      showModal: false,
+	      lesson: {
+	        lessonNumber: '',
+	        lessonName: '',
+	        lessonUnit: '',
+	        lessonSubject: '',
+	        materialsRequired: '',
+	        lessonDescription: ''
+	      }
 	    };
 	  },
 
 	  methods: {
 	    addLesson: function addLesson() {
 	      this.showModal = true;
+	    },
+	    exitLesson: function exitLesson() {
+	      this.showModal = false;
+	    },
+	    clearLesson: function clearLesson() {
+	      this.lesson.lessonNumber = '';
+	      this.lesson.lessonName = '';
+	      this.lesson.lessonUnit = '';
+	      this.lesson.lessonSubject = '';
+	      this.lesson.materialsRequired = '';
+	      this.lesson.lessonDescription = '';
+	    },
+	    saveLesson: function saveLesson() {
+	      var _this = this;
+
+	      var lesson = {
+	        lessonNumber: this.lesson.lessonNumber,
+	        lessonName: this.lesson.lessonName,
+	        lessonUnit: this.lesson.lessonUnit,
+	        lessonSubject: this.lesson.lessonSubject,
+	        materialsRequired: this.lesson.materialsRequired,
+	        lessonDescription: this.lesson.lessonDescription
+	      };
+	      console.log(lesson);
+	      this.$http.post(LESSON_URL, lesson, function (data) {
+	        console.log('Data' + lesson);
+	        _this.exitLesson();
+	        _this.clearLesson();
+	        _this.getLessons();
+	      });
+	    },
+	    getLessons: function getLessons() {
+	      var _this2 = this;
+
+	      this.$http.get(LESSON_URL, function (data) {
+	        data.forEach(function (elem) {
+	          _this2.lessons.push(elem);
+	        });
+	      });
 	    }
 	  },
 	  components: {
@@ -10299,7 +10080,7 @@
 	// </script>
 
 /***/ },
-/* 23 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -14416,18 +14197,30 @@
 	//# sourceMappingURL=vue-strap.js.map
 
 /***/ },
-/* 24 */
+/* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"\">Hello,{{ user.name }}!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><h3>Hi {{ user.name }}</h3></div></div>";
+	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello{{ user.name }}!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><button @click=\"addLesson()\" class=\"btn btn-default\">Create Lesson</button></div><modal :show.sync=\"showModal\" class=\"container\"><div slot=\"modal-header\" class=\"modal-header\"><h4 class=\"modal-title\">Create Lesson</h4></div><div slot=\"modal-body\" class=\"modal-body\"><div class=\"row\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"lessonNumber\" class=\"col-sm-3 control-label\">Lesson Number</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonNumber\" id=\"lessonNumber\" placeholder=\"Lesson Number\" v-model=\"lesson.lessonNumber\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonName\" class=\"col-sm-3 control-label\">Lesson Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonName\" id=\"lessonName\" placeholder=\"Lesson Name\" v-model=\"lesson.lessonName\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonUnit\" class=\"col-sm-3 control-label\">Lesson Unit</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonUnit\" id=\"lessonUnit\" placeholder=\"Lesson Unit\" v-model=\"lesson.lessonUnit\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonSubject\" class=\"col-sm-3 control-label\">Lesson Subject</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonSubject\" id=\"lessonSubject\" placeholder=\"Lesson Subject\" v-model=\"lesson.lessonSubject\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"materialsRequired\" class=\"col-sm-3 control-label\">Required Materials</label><div class=\"col-sm-9\"><textarea rows=\"3\" name=\"materialsRequired\" id=\"materialsRequired\" placeholder=\"Required Materials\" v-model=\"lesson.materialsRequired\" class=\"form-control\"></textarea></div></div><div class=\"form-group\"><label for=\"lessonDescription\" class=\"col-sm-3 control-label\">Lesson Description</label><div class=\"col-sm-9\"><textarea rows=\"3\" name=\"lessonDescription\" id=\"lessonDescription\" placeholder=\"Lesson Description\" v-model=\"lesson.lessonDescription\" class=\"form-control\"></textarea></div></div></form></div></div><div slot=\"modal-footer\" class=\"modal-footer\"><button type=\"button\" @click=\"exitLesson()\" class=\"btn btn-default\">Close</button><button type=\"submit\" @click=\"saveLesson()\" class=\"btn btn-primary\">Save</button></div></modal><div class=\"lessons\"><ul><li v-for=\"lesson in lessons\">{{ lesson.lesson_name }}</li></ul></div></div>";
 
 /***/ },
-/* 25 */
+/* 14 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello{{ user.name }}!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><h3>Hi {{ user.name }}</h3></div></div>";
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = "<div><nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"\">Welcome{{ user.name }}!</a></li><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'profile'\" v-if=\"user.authenticated\">Profile</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div></div>";
+
+/***/ },
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(26)
-	__vue_template__ = __webpack_require__(27)
+	__vue_script__ = __webpack_require__(17)
+	__vue_template__ = __webpack_require__(18)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14435,7 +14228,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Lessons.vue"
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Home.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -14444,7 +14237,109 @@
 	})()}
 
 /***/ },
-/* 26 */
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	var _index = __webpack_require__(1);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    name: "Home",
+	    data: function data() {
+	        return {
+	            quote: '',
+	            credentials: {
+	                username: '',
+	                password: ''
+	            }
+	        };
+	    },
+
+	    methods: {
+	        getQuote: function getQuote() {
+	            var _this = this;
+
+	            this.$http.get('http://localhost:3001/api/random-quote', function (data) {
+	                _this.quote = data;
+	            }).error(function (err) {
+	                return console.log(err);
+	            });
+	        },
+	        submit: function submit() {
+	            var credentials = {
+	                username: this.credentials.username,
+	                password: this.credentials.password
+	            };
+	            _auth2.default.login(this, credentials, '/secretquote');
+	        },
+	        signup: function signup() {
+	            _index.router.go('/signup');
+	        }
+	    }
+	};
+	// </script>
+	// <template lang="jade">
+	//     include ./mixins/forms.jade
+	//     div
+	//         .container
+	//             .col-sm-5.col-sm-offset-1
+	//                 h1 Roche Digital Lesson Planning!
+	//                 h3 An innovative approche to learning
+	//             .col-sm-5.col-sm-offset-1
+	//                 h2 Welcome Members!
+	//                 +login
+	//                 .row
+	//                     .col-sm-offset-7
+	//                         button(type='submit' @click="signup()").btn.btn-default Not a member yet?
+	// </template>
+	//
+	// <script>
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = "<div><div class=\"container\"><div class=\"col-sm-5 col-sm-offset-1\"><h1>Roche Digital Lesson Planning!</h1><h3>An innovative approche to learning</h3></div><div class=\"col-sm-5 col-sm-offset-1\"><h2>Welcome Members!</h2><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-sm-offset-2.col-sm-4--><!--        .checkbox--><!--            label.col-sm-12--><!--                .col-sm-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Sign in</button></div></form><div class=\"row\"><div class=\"col-sm-offset-7\"><button type=\"submit\" @click=\"signup()\" class=\"btn btn-default\">Not a member yet?</button></div></div></div></div></div>";
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(20)
+	__vue_template__ = __webpack_require__(21)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/SecretQuote.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14457,52 +14352,1082 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _vueStrap = __webpack_require__(23);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// <template lang="jade">
-	// include ./mixins/sidebar.jade
-	// .row
-	//   +sidebar //- .col-sm-2
-	//   .col-sm-10
-	//     button(@click="addLesson()").btn.btn-default Create Lesson
-	//   modal(:show.sync="showModal")
-	//     div(slot="modal-header").modal-header
-	//       h4.modal-title Create Lesson
-	//     div(slot="modal-body").modal-body
-	// </template>
-	//
-	// <script>
 	exports.default = {
-	  name: "Profile",
-	  props: [],
+	  name: "SecretQuote",
 	  data: function data() {
 	    return {
-	      user: _auth2.default.user,
-	      showModal: false
+	      quote: ''
 	    };
 	  },
 
 	  methods: {
-	    addLesson: function addLesson() {
-	      this.showModal = true;
+	    getQuote: function getQuote() {
+	      var _this = this;
+
+	      this.$http.get('http://localhost:3001/api/protected/random-quote', function (data) {
+	        _this.quote = data;
+	      }, {
+	        headers: _auth2.default.getAuthHeader()
+	      }).error(function (err) {
+	        return console.log(err);
+	      });
+	    }
+	  },
+	  route: {
+	    canActivate: function canActivate() {
+	      return _auth2.default.user.authenticated;
+	    }
+	  }
+	};
+	// </script>
+	// <template>
+	//   <div class="col-sm-6 col-sm-offset-3">
+	//     <h1>Get a Secret Chuck Norris Quote!</h1>
+	//     <button class="btn btn-warning" v-on:click="getQuote()">Get a Quote</button>
+	//     <div class="quote-area" v-if="quote">
+	//       <h2><blockquote>{{ quote }}</blockquote></h2>
+	//     </div>
+	//   </div>
+	// </template>
+	//
+	// <script>
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"col-sm-6 col-sm-offset-3\">\n  <h1>Get a Secret Chuck Norris Quote!</h1>\n  <button class=\"btn btn-warning\" v-on:click=\"getQuote()\">Get a Quote</button>\n  <div class=\"quote-area\" v-if=\"quote\">\n    <h2><blockquote>{{ quote }}</blockquote></h2>\n  </div>\n</div>\n";
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(23)
+	__vue_template__ = __webpack_require__(28)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Signup.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	var _vueValidator = __webpack_require__(24);
+
+	var _vueValidator2 = _interopRequireDefault(_vueValidator);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  name: "Signup",
+	  data: function data() {
+	    return {
+	      credentials: {
+	        firstName: '',
+	        lastName: '',
+	        gradeLevel: '',
+	        username: '',
+	        password: ''
+	      },
+	      error: ''
+	    };
+	  },
+
+	  methods: {
+	    submit: function submit() {
+	      var credentials = {
+	        firstName: this.credentials.firstName,
+	        lastName: this.credentials.lastName,
+	        gradeLevel: this.credentials.gradeLevel,
+	        username: this.credentials.username,
+	        password: this.credentials.password
+	      };
+	      _auth2.default.signup(this, credentials, '/profile');
 	    }
 	  },
 	  components: {
-	    Modal: _vueStrap.modal
+	    validator: _vueValidator2.default
 	  }
+	};
+	// </script>
+	// <template lang="jade" id="signup-template">
+	//    include ./mixins/forms.jade
+	//    div
+	//      .container
+	//        h1.col-sm-12 Register
+	//      .row
+	//       +signup
+	// </template>
+	//
+	// <script>
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Import(s)
+	 */
+
+	var validates = __webpack_require__(25)
+	var _ = __webpack_require__(26)
+
+
+	/**
+	 * Export(s)
+	 */
+
+	module.exports = install
+
+
+	/**
+	 * Install plugin
+	 */
+
+	function install (Vue, options) {
+	  options = options || {}
+	  var componentName = options.component = options.component || '$validator'
+	  var directiveName = options.directive = options.directive || 'validate'
+	  var path = Vue.parsers.path
+	  var util = Vue.util
+
+
+	  // custom validators merge strategy setting
+	  Vue.config.optionMergeStrategies.validator = function (parent, child, vm, k) {
+	    var validatorOptions = { validates: {}, namespace: {} }
+	    if (!parent && !child) {
+	      return validatorOptions
+	    } else if (!parent && child) {
+	      util.extend(validatorOptions['validates'], child['validates'])
+	      util.extend(validatorOptions['namespace'], child['namespace'])
+	      return validatorOptions
+	    } else if (parent && !child) {
+	      util.extend(validatorOptions['validates'], parent['validates'])
+	      util.extend(validatorOptions['namespace'], parent['namespace'])
+	      return validatorOptions
+	    } else if (parent && child) {
+	      var key
+	      if ('validates' in parent) {
+	        util.extend(validatorOptions['validates'], parent['validates'])
+	      }
+	      if ('namespace' in parent) {
+	        util.extend(validatorOptions['namespace'], parent['namespace'])
+	      }
+	      if ('validates' in child) {
+	        for (key in child['validates']) {
+	          if ('validates' in parent && !parent['validates'].hasOwnProperty(key)) {
+	            validatorOptions['validates'][key] = child['validates'][key]
+	          }
+	        }
+	      }
+	      if ('namespace' in child) {
+	        for (key in child['namespace']) {
+	          if ('namespace' in parent && !parent['namespace'].hasOwnProperty(key)) {
+	            validatorOptions['namespace'][key] = child['namespace'][key]
+	          }
+	        }
+	      }
+	      return validatorOptions
+	    } else {
+	      _.warn('unexpected validator option merge strategy')
+	      return validatorOptions
+	    }
+	  }
+
+
+	  function getVal (obj, keypath) {
+	    var ret = null
+	    try {
+	      ret = path.get(obj, keypath)
+	    } catch (e) { }
+	    return ret
+	  }
+
+
+	  Vue.directive(directiveName, {
+
+	    priority: 1024,
+
+	    bind: function () {
+	      var vm = this.vm
+	      var el = this.el
+	      var $validator = vm[componentName]
+	      var keypath = this._keypath = this._parseModelAttribute(el.getAttribute(Vue.config.prefix + 'model'))
+	      var validator = this.arg ? this.arg : this.expression
+	      var arg = this.arg ? this.expression : null
+
+	      var customs = _.getCustomValidators(vm.$options)
+	      if (!this._checkValidator(validator, validates, customs)) {
+	        _.warn("specified invalid '"
+	          + validator + "' validator at v-validate directive !! please check '"
+	          + validator + "' validator !!")
+	        this._ignore = true
+	        return
+	      }
+
+	      if (!$validator) {
+	        vm[componentName] = $validator = vm.$addChild(
+	          {}, // null option
+	          Vue.extend(__webpack_require__(27))
+	        )
+	      }
+
+	      var value = el.getAttribute('value')
+	      if (el.getAttribute('number') !== null) {
+	        value = util.toNumber(value)
+	      }
+	      this._init = value
+
+	      var validation = $validator._getValidationNamespace('validation')
+	      var init = value || vm.$get(keypath)
+	      var readyEvent = el.getAttribute('wait-for')
+
+	      if (readyEvent && !$validator._isRegistedReadyEvent(keypath)) {
+	        $validator._addReadyEvents(keypath, this._checkParam('wait-for'))
+	      }
+	      
+	      this._setupValidator($validator, keypath, validation, validator, el, arg, init)
+	    },
+
+	    update: function (val, old) {
+	      if (this._ignore) { return }
+
+	      var self = this
+	      var vm = this.vm
+	      var keypath = this._keypath
+	      var validator = this.arg ? this.arg : this.expression
+	      var $validator = vm[componentName]
+
+	      $validator._changeValidator(keypath, validator, val)
+	      if (!$validator._isRegistedReadyEvent(keypath)) { // normal
+	        this._updateValidator($validator, validator, keypath)
+	      } else { // wait-for
+	        vm.$once($validator._getReadyEvents(keypath), function (val) {
+	          $validator._setInitialValue(keypath, val)
+	          vm.$set(keypath, val)
+	          self._updateValidator($validator, validator, keypath)
+	        })
+	      }
+	    },
+
+	     
+	    unbind: function () {
+	      if (this._ignore) { return }
+
+	      var vm = this.vm
+	      var keypath = this._keypath
+	      var validator = this.arg ? this.arg : this.expression
+	      var $validator = vm[componentName]
+
+	      this._teardownValidator(vm, $validator, keypath, validator)
+	    },
+
+	    _parseModelAttribute: function (attr) {
+	      var res = Vue.parsers.directive.parse(attr)
+	      return res[0].arg ? res[0].arg : res[0].expression
+	    },
+
+	    _checkValidator: function (validator, validates, customs) {
+	      var items = Object.keys(validates).concat(Object.keys(customs))
+	      return items.some(function (item) {
+	        return item === validator
+	      })
+	    },
+
+	    _setupValidator: function ($validator, keypath, validation, validator, el, arg, init) {
+	      var vm = this.vm
+
+	      if (!getVal($validator[validation], keypath)) {
+	        $validator._defineModelValidationScope(keypath)
+	        if (el.tagName === 'INPUT' && el.type === 'radio') {
+	          if (getVal(vm, keypath) === init) {
+	            $validator._setInitialValue(keypath, init)
+	          }
+	        } else {
+	          $validator._setInitialValue(keypath, init)
+	        }
+	      }
+
+	      if (!getVal($validator[validation], [keypath, validator].join('.'))) {
+	        $validator._defineValidatorToValidationScope(keypath, validator)
+	        $validator._addValidator(keypath, validator, getVal(vm, arg) || arg)
+	      }
+	    },
+
+	    _updateValidator: function ($validator, validator, keypath) {
+	      var value = $validator.$get(keypath)
+	      var el = this.el
+
+	      if (this._init) {
+	        value = this._init
+	        delete this._init
+	      }
+
+	      if (el.tagName === 'INPUT' && el.type === 'radio') {
+	        if (value === $validator.$get(keypath)) {
+	          $validator._updateDirtyProperty(keypath, value)
+	        }
+	      } else {
+	        $validator._updateDirtyProperty(keypath, value)
+	      }
+
+	      $validator._doValidate(keypath, validator, $validator.$get(keypath))
+	    },
+
+	    _teardownValidator: function (vm, $validator, keypath, validator) {
+	      $validator._undefineValidatorToValidationScope(keypath, validator)
+	      $validator._undefineModelValidationScope(keypath, validator)
+	    }
+	  })
+	}
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	/**
+	 * Fundamental validate functions
+	 */
+
+
+	/**
+	 * required
+	 *
+	 * This function validate whether the value has been filled out.
+	 *
+	 * @param val
+	 * @return {Boolean}
+	 */
+
+	function required (val) {
+	  if (Array.isArray(val)) {
+	    return val.length > 0
+	  } else if (typeof val === 'number') {
+	    return true
+	  } else if ((val !== null) && (typeof val === 'object')) {
+	    return Object.keys(val).length > 0
+	  } else {
+	    return !val
+	      ? false
+	      : true
+	  }
+	}
+
+
+	/**
+	 * pattern
+	 *
+	 * This function validate whether the value matches the regex pattern
+	 *
+	 * @param val
+	 * @param {String} pat
+	 * @return {Boolean}
+	 */
+
+	function pattern (val, pat) {
+	  if (typeof pat !== 'string') { return false }
+
+	  var match = pat.match(new RegExp('^/(.*?)/([gimy]*)$'))
+	  if (!match) { return false }
+
+	  return new RegExp(match[1], match[2]).test(val)
+	}
+
+
+	/**
+	 * minLength
+	 *
+	 * This function validate whether the minimum length of the string.
+	 *
+	 * @param {String} val
+	 * @param {String|Number} min
+	 * @return {Boolean}
+	 */
+
+	function minLength (val, min) {
+	  return typeof val === 'string' &&
+	    isInteger(min, 10) &&
+	    val.length >= parseInt(min, 10)
+	}
+
+
+	/**
+	 * maxLength
+	 *
+	 * This function validate whether the maximum length of the string.
+	 *
+	 * @param {String} val
+	 * @param {String|Number} max
+	 * @return {Boolean}
+	 */
+
+	function maxLength (val, max) {
+	  return typeof val === 'string' &&
+	    isInteger(max, 10) &&
+	    val.length <= parseInt(max, 10)
+	}
+
+
+	/**
+	 * min
+	 *
+	 * This function validate whether the minimum value of the numberable value.
+	 *
+	 * @param {*} val
+	 * @param {*} arg minimum
+	 * @return {Boolean}
+	 */
+
+	function min (val, arg) {
+	  return !isNaN(+(val)) && !isNaN(+(arg)) && (+(val) >= +(arg))
+	}
+
+
+	/**
+	 * max
+	 *
+	 * This function validate whether the maximum value of the numberable value.
+	 *
+	 * @param {*} val
+	 * @param {*} arg maximum
+	 * @return {Boolean}
+	 */
+
+	function max (val, arg) {
+	  return !isNaN(+(val)) && !isNaN(+(arg)) && (+(val) <= +(arg))
+	}
+
+
+	/**
+	 * isInteger
+	 *
+	 * This function check whether the value of the string is integer.
+	 *
+	 * @param {String} val
+	 * @return {Boolean}
+	 * @private
+	 */
+
+	function isInteger (val) {
+	  return /^(-?[1-9]\d*|0)$/.test(val)
+	}
+
+
+	/**
+	 * export(s)
+	 */
+	module.exports = {
+	  required: required,
+	  pattern: pattern,
+	  minLength: minLength,
+	  maxLength: maxLength,
+	  min: min,
+	  max: max
+	}
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	/**
+	 * Utilties
+	 */
+
+
+	/**
+	 * warn
+	 *
+	 * @param {String} msg
+	 * @param {Error} [err]
+	 *
+	 */
+
+	exports.warn = function (msg, err) {
+	  if (window.console) {
+	    console.warn('[vue-validator] ' + msg)
+	    if (err) {
+	      console.warn(err.stack)
+	    }
+	  }
+	}
+
+	/**
+	 * Get target validatable object
+	 *
+	 * @param {Object} validation
+	 * @param {String} keypath
+	 * @return {Object} validatable object
+	 */
+
+	exports.getTarget = function (validation, keypath) {
+	  var last = validation
+	  var keys = keypath.split('.')
+	  var key, obj
+	  for (var i = 0; i < keys.length; i++) {
+	    key = keys[i]
+	    obj = last[key]
+	    last = obj
+	    if (!last) {
+	      break
+	    }
+	  }
+	  return last
+	}
+
+	/**
+	 * Get custom validators
+	 *
+	 * @param {Object} options
+	 * @return {Object}
+	 */
+
+	exports.getCustomValidators = function (options) {
+	  var opts = options
+	  var validators = {}
+	  var key
+	  var context
+	  do {
+	    if (opts['validator'] && opts['validator']['validates']) {
+	      for (key in opts['validator']['validates']) {
+	        if (!validators.hasOwnProperty(key)) {
+	          validators[key] = opts['validator']['validates'][key]
+	        }
+	      }
+	    }
+	    context = opts._context || opts._parent
+	    if (context) {
+	      opts = context.$options
+	    }
+	  } while (context || opts._parent)
+	  return validators
+	}
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Import(s)
+	 */
+
+	var validates = __webpack_require__(25)
+	var _ = __webpack_require__(26)
+
+
+	/**
+	 * Export(s)
+	 */
+
+
+	/**
+	 * `v-validator` component with mixin
+	 */
+
+	module.exports = {
+	  inherit: true,
+
+	  created: function () {
+	    this._initValidationVariables()
+	    this._initOptions()
+	    this._mixinCustomValidates()
+	    this._defineProperties()
+	    this._defineValidationScope()
+	  },
+
+	  methods: {
+	    _getValidationNamespace: function (key) {
+	      return this._namespace[key]
+	    },
+
+	    _initValidationVariables: function () {
+	      this._validators = {}
+	      this._validates = {}
+	      this._initialValues = {}
+	      for (var key in validates) {
+	        this._validates[key] = validates[key]
+	      }
+	      this._validatorWatchers = {}
+	      this._readyEvents = {}
+	    },
+
+	    _initOptions: function () {
+	      this._namespace = getCustomNamespace(this.$options)
+	      this._namespace.validation = this._namespace.validation || 'validation'
+	      this._namespace.valid = this._namespace.valid || 'valid'
+	      this._namespace.invalid = this._namespace.invalid || 'invalid'
+	      this._namespace.dirty = this._namespace.dirty || 'dirty'
+	    },
+
+	    _mixinCustomValidates: function () {
+	      var customs = _.getCustomValidators(this.$options)
+	      for (var key in customs) {
+	        this._validates[key] = customs[key]
+	      }
+	    },
+
+	    _defineValidProperty: function (target, getter) {
+	      Object.defineProperty(target, this._getValidationNamespace('valid'), {
+	        enumerable: true,
+	        configurable: true,
+	        get: getter
+	      })
+	    },
+
+	    _undefineValidProperty: function (target) {
+	      delete target[this._getValidationNamespace('valid')]
+	    },
+
+	    _defineInvalidProperty: function (target) {
+	      var self = this
+	      Object.defineProperty(target, this._getValidationNamespace('invalid'), {
+	        enumerable: true,
+	        configurable: true,
+	        get: function () {
+	          return !target[self._getValidationNamespace('valid')]
+	        }
+	      })
+	    },
+
+	    _undefineInvalidProperty: function (target) {
+	      delete target[this._getValidationNamespace('invalid')]
+	    },
+
+	    _defineDirtyProperty: function (target, getter) {
+	      Object.defineProperty(target, this._getValidationNamespace('dirty'), {
+	        enumerable: true,
+	        configurable: true,
+	        get: getter
+	      })
+	    },
+
+	    _undefineDirtyProperty: function (target) {
+	      delete target[this._getValidationNamespace('dirty')]
+	    },
+
+	    _defineProperties: function () {
+	      var self = this
+
+	      var walk = function (obj, propName, namespaces) {
+	        var ret = false
+	        var keys = Object.keys(obj)
+	        var i = keys.length
+	        var key, last
+	        while (i--) {
+	          key = keys[i]
+	          last = obj[key]
+	          if (!(key in namespaces) && typeof last === 'object') {
+	            ret = walk(last, propName, namespaces)
+	            if ((propName === self._getValidationNamespace('valid') && !ret) ||
+	                (propName === self._getValidationNamespace('dirty') && ret)) {
+	              break
+	            }
+	          } else if (key === propName && typeof last !== 'object') {
+	            ret = last
+	            if ((key === self._getValidationNamespace('valid') && !ret) ||
+	                (key === self._getValidationNamespace('dirty') && ret)) {
+	              break
+	            }
+	          }
+	        }
+	        return ret
+	      }
+
+	      this._defineValidProperty(this.$parent, function () {
+	        var validationName = self._getValidationNamespace('validation')
+	        var validName = self._getValidationNamespace('valid')
+	        return walk(this[validationName], validName, self._namespace)
+	      })
+
+	      this._defineInvalidProperty(this.$parent)
+
+	      this._defineDirtyProperty(this.$parent, function () {
+	        var validationName = self._getValidationNamespace('validation')
+	        var dirtyName = self._getValidationNamespace('dirty')
+	        return walk(this[validationName], dirtyName, self._namespace)
+	      })
+	    },
+
+	    _undefineProperties: function () {
+	      this._undefineDirtyProperty(this.$parent)
+	      this._undefineInvalidProperty(this.$parent)
+	      this._undefineValidProperty(this.$parent)
+	    },
+
+	    _defineValidationScope: function () {
+	      this.$parent.$add(this._getValidationNamespace('validation'), {})
+	    },
+
+	    _undefineValidationScope: function () {
+	      var validationName = this._getValidationNamespace('validation')
+	      this.$parent.$delete(validationName)
+	    },
+
+	    _defineModelValidationScope: function (keypath) {
+	      var self = this
+	      var validationName = this._getValidationNamespace('validation')
+	      var dirtyName = this._getValidationNamespace('dirty')
+
+	      var keys = keypath.split('.')
+	      var last = this[validationName]
+	      var obj, key
+	      for (var i = 0; i < keys.length; i++) {
+	        key = keys[i]
+	        obj = last[key]
+	        if (!obj) {
+	          obj = {}
+	          last.$add(key, obj)
+	        }
+	        last = obj
+	      }
+	      last.$add(dirtyName, false)
+
+	      this._defineValidProperty(last, function () {
+	        var ret = true
+	        var validators = self._validators[keypath]
+	        var i = validators.length
+	        var validator
+	        while (i--) {
+	          validator = validators[i]
+	          if (last[validator.name]) {
+	            ret = false
+	            break
+	          }
+	        }
+	        return ret
+	      })
+	      this._defineInvalidProperty(last)
+	      
+	      this._validators[keypath] = []
+
+	      this._watchModel(keypath, function (val, old) {
+	        self._updateDirtyProperty(keypath, val)
+	        self._validators[keypath].forEach(function (validator) {
+	          self._doValidate(keypath, validator.name, val)
+	        })
+	      })
+	    },
+
+	    _undefineModelValidationScope: function (keypath, validator) {
+	      if (this.$parent) {
+	        var targetPath = [this._getValidationNamespace('validation'), keypath].join('.')
+	        var target = this.$parent.$get(targetPath)
+	        if (target && Object.keys(target).length === 3 &&
+	            this._getValidationNamespace('valid') in target &&
+	            this._getValidationNamespace('invalid') in target &&
+	            this._getValidationNamespace('dirty') in target) {
+	          this._unwatchModel(keypath)
+	          this._undefineDirtyProperty(target)
+	          this._undefineInvalidProperty(target)
+	          this._undefineValidProperty(target)
+	          removeValidationProperties(
+	            this.$parent.$get(this._getValidationNamespace('validation')),
+	            keypath
+	          )
+	        }
+	      }
+	    },
+
+	    _defineValidatorToValidationScope: function (keypath, validator) {
+	      var target = _.getTarget(this[this._getValidationNamespace('validation')], keypath)
+	      target.$add(validator, null)
+	    },
+
+	    _undefineValidatorToValidationScope: function (keypath, validator) {
+	      var validationName = this._getValidationNamespace('validation')
+	      if (this.$parent) {
+	        var targetPath = [validationName, keypath].join('.')
+	        var target = this.$parent.$get(targetPath)
+	        if (target) {
+	          target.$delete(validator)
+	        }
+	      }
+	    },
+
+	    _getInitialValue: function (keypath) {
+	      return this._initialValues[keypath]
+	    },
+
+	    _setInitialValue: function (keypath, val) {
+	      this._initialValues[keypath] = val
+	    },
+
+	    _addValidator: function (keypath, validator, arg) {
+	      this._validators[keypath].push({ name: validator, arg: arg })
+	    },
+
+	    _changeValidator: function (keypath, validator, arg) {
+	      var validators = this._validators[keypath]
+	      var i = validators.length
+	      while (i--) {
+	        if (validators[i].name === validator) {
+	          validators[i].arg = arg
+	          break
+	        }
+	      }
+	    },
+
+	    _findValidator: function (keypath, validator) {
+	      var found = null
+	      var validators = this._validators[keypath]
+	      var i = validators.length
+	      while (i--) {
+	        if (validators[i].name === validator) {
+	          found = validators[i]
+	          break
+	        }
+	      }
+	      return found
+	    },
+
+	    _watchModel: function (keypath, fn) {
+	      this._validatorWatchers[keypath] =
+	        this.$watch(keypath, fn, { deep: false, immediate: true })
+	    },
+
+	    _unwatchModel: function (keypath) {
+	      var unwatch = this._validatorWatchers[keypath]
+	      if (unwatch) {
+	        unwatch()
+	        delete this._validatorWatchers[keypath]
+	      }
+	    },
+	    
+	    _addReadyEvents: function (id, event) {
+	      this._readyEvents[id] = event
+	    },
+
+	    _getReadyEvents: function (id) {
+	      return this._readyEvents[id]
+	    },
+
+	    _isRegistedReadyEvent: function (id) {
+	      return id in this._readyEvents
+	    },
+
+	    _updateDirtyProperty: function (keypath, val) {
+	      var validationName = this._getValidationNamespace('validation')
+	      var dirtyName = this._getValidationNamespace('dirty')
+
+	      var target = _.getTarget(this[validationName], keypath)
+	      if (target) {
+	        target.$set(dirtyName, this._getInitialValue(keypath) !== val)
+	      }
+	    },
+
+	    _doValidate: function (keypath, validateName, val) {
+	      var validationName = this._getValidationNamespace('validation')
+
+	      var target = _.getTarget(this[validationName], keypath)
+	      var validator = this._findValidator(keypath, validateName)
+	      if (target && validator) {
+	        this._invokeValidator(
+	          this._validates[validateName],
+	          val, validator.arg,
+	          function (result) {
+	            target.$set(validateName, !result)
+	          })
+	      }
+	    },
+	    
+	    _invokeValidator: function (validator, val, arg, fn) {
+	      var future = validator.call(this, val, arg)
+	      if (typeof future === 'function') { // async
+	        if (future.resolved) {
+	          // cached
+	          fn(future.resolved)
+	        } else if (future.requested) {
+	          // pool callbacks
+	          future.pendingCallbacks.push(fn)
+	        } else {
+	          future.requested = true
+	          var fns = future.pendingCallbacks = [fn]
+	          future(function resolve () {
+	            future.resolved = true
+	            for (var i = 0, l = fns.length; i < l; i++) {
+	              fns[i](true)
+	            }
+	          }, function reject () {
+	            fn(false)
+	          })
+	        }
+	      } else { // sync
+	        fn(future)
+	      }
+	    }
+	  }
+	}
+
+	/**
+	 * Remove properties from target validation
+	 *
+	 * @param {Object} validation
+	 * @param {String} keypath
+	 */
+
+	function removeValidationProperties (validation, keypath) {
+	  var keys = keypath.split('.')
+	  var key, obj
+	  while (keys.length) {
+	    key = keys.pop()
+	    if (keys.length !== 0) {
+	      obj = _.getTarget(validation, keys.join('.'))
+	      obj.$delete(key)
+	    } else {
+	      validation.$delete(key)
+	    }
+	  }
+	}
+
+	/**
+	 * Get custom namespace
+	 *
+	 * @param {Object} options
+	 * @return {Object}
+	 */
+
+	function getCustomNamespace (options) {
+	  var namespace = {}
+	  var key
+	  var context
+	  do {
+	    if (options['validator'] && options['validator']['namespace']) {
+	      for (key in options['validator']['namespace']) {
+	        if (!namespace.hasOwnProperty(key)) {
+	          namespace[key] = options['validator']['namespace'][key]
+	        }
+	      }
+	    }
+	    context = options._context || options._parent
+	    if (context) {
+	      options = context.$options
+	    }
+	  } while (context || options._parent)
+	  return namespace
+	}
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports) {
+
+	module.exports = "<div><div class=\"container\"><h1 class=\"col-sm-12\">Register</h1></div><div class=\"row\"><validator name=\"validation1\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"firstName\" class=\"col-sm-3 control-label\">First Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"firstName\" id=\"firstName\" placeholder=\"First Name\" v-model=\"credentials.firstName\" v-validate:credentials.firstName=\"['required']\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lastName\" class=\"col-sm-3 control-label\">Last Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lastName\" id=\"lastName\" placeholder=\"Last Name\" v-model=\"credentials.lastName\" v-validate:credentials.lastName=\"['required']\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"gradeLevel\" class=\"col-sm-3 control-label\">Grade Level</label><div class=\"col-sm-9\"><select v-model=\"credentials.gradeLevel\" v-validate:credentials.gradeLevel=\"['required']\" class=\"form-control\"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div></div><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" v-validate:credentials.username=\"['required']\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" v-validate:credentials.password=\"['required']\" class=\"form-control\"/></div></div><div><span v-show=\"$validation1.credentials.firstName.required\">Required a first name.</span><span v-show=\"$validation1.credentials.lastName.required\">Required a last name.</span><span v-show=\"$validation1.credentials.gradeLevel.required\">Required a grade level.</span><span v-show=\"$validation1.credentials.username.required\">Required a email.</span><span v-show=\"$validation1.credentials.password.required\">Required a password.</span></div><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" v-if=\"$validation1.valid\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Register</button></div></form></validator></div></div>";
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(30)
+	__vue_template__ = __webpack_require__(31)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Login.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _config = __webpack_require__(7);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// <template lang="jade">
+	//   include ./mixins/forms.jade
+	//   div
+	//     .container
+	//       h1.col-sm-12 Login
+	//     .row
+	//       +login
+	// </template>
+	//
+	// <script>
+	exports.default = {
+	  name: "Login",
+	  data: function data() {
+	    return {
+	      credentials: {
+	        username: '',
+	        password: ''
+	      },
+	      error: ''
+	    };
+	  },
+
+	  methods: {
+	    submit: function submit() {
+	      var credentials = {
+	        username: this.credentials.username,
+	        password: this.credentials.password
+	      };
+	      _auth2.default.login(this, credentials, '/profile');
+	    }
+	  }
+
 	};
 	// </script>
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"\">Hello,{{ user.name }}!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><button @click=\"addLesson()\" class=\"btn btn-default\">Create Lesson</button></div><modal :show.sync=\"showModal\"><div slot=\"modal-header\" class=\"modal-header\"><h4 class=\"modal-title\">Create Lesson</h4></div><div slot=\"modal-body\" class=\"modal-body\"></div></modal></div>";
+	module.exports = "<div><div class=\"container\"><h1 class=\"col-sm-12\">Login</h1></div><div class=\"row\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-sm-offset-2.col-sm-4--><!--        .checkbox--><!--            label.col-sm-12--><!--                .col-sm-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Sign in</button></div></form></div></div>";
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17041,7 +17966,7 @@
 	module.exports = Router;
 
 /***/ },
-/* 29 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17050,16 +17975,16 @@
 
 	function install(Vue) {
 
-	    var _ = __webpack_require__(30);
+	    var _ = __webpack_require__(34);
 
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 
-	    Vue.url = __webpack_require__(31);
-	    Vue.http = __webpack_require__(37);
-	    Vue.resource = __webpack_require__(52);
-	    Vue.Promise = __webpack_require__(38);
+	    Vue.url = __webpack_require__(35);
+	    Vue.http = __webpack_require__(41);
+	    Vue.resource = __webpack_require__(56);
+	    Vue.Promise = __webpack_require__(42);
 
 	    Object.defineProperties(Vue.prototype, {
 
@@ -17100,7 +18025,7 @@
 
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports) {
 
 	/**
@@ -17228,14 +18153,14 @@
 
 
 /***/ },
-/* 31 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 
@@ -17271,10 +18196,10 @@
 	 */
 
 	Url.transforms = [
-	    __webpack_require__(32),
-	    __webpack_require__(34),
-	    __webpack_require__(35),
-	    __webpack_require__(36)
+	    __webpack_require__(36),
+	    __webpack_require__(38),
+	    __webpack_require__(39),
+	    __webpack_require__(40)
 	];
 
 	/**
@@ -17364,14 +18289,14 @@
 
 
 /***/ },
-/* 32 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 
-	var UrlTemplate = __webpack_require__(33);
+	var UrlTemplate = __webpack_require__(37);
 
 	module.exports = function (options) {
 
@@ -17386,7 +18311,7 @@
 
 
 /***/ },
-/* 33 */
+/* 37 */
 /***/ function(module, exports) {
 
 	/**
@@ -17542,14 +18467,14 @@
 
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	module.exports = function (options, next) {
 
@@ -17594,14 +18519,14 @@
 
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	module.exports = function (options, next) {
 
@@ -17624,14 +18549,14 @@
 
 
 /***/ },
-/* 36 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	module.exports = function (options, next) {
 
@@ -17646,17 +18571,17 @@
 
 
 /***/ },
-/* 37 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 
-	var _ = __webpack_require__(30);
-	var Promise = __webpack_require__(38);
-	var interceptor = __webpack_require__(40);
-	var defaultClient = __webpack_require__(41);
+	var _ = __webpack_require__(34);
+	var Promise = __webpack_require__(42);
+	var interceptor = __webpack_require__(44);
+	var defaultClient = __webpack_require__(45);
 	var jsonType = {'Content-Type': 'application/json'};
 
 	function Http(url, options) {
@@ -17709,13 +18634,13 @@
 	};
 
 	Http.interceptors = [
-	    __webpack_require__(43),
-	    __webpack_require__(44),
-	    __webpack_require__(45),
 	    __webpack_require__(47),
 	    __webpack_require__(48),
 	    __webpack_require__(49),
-	    __webpack_require__(50)
+	    __webpack_require__(51),
+	    __webpack_require__(52),
+	    __webpack_require__(53),
+	    __webpack_require__(54)
 	];
 
 	Http.headers = {
@@ -17750,15 +18675,15 @@
 
 
 /***/ },
-/* 38 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 
-	var _ = __webpack_require__(30);
-	var PromiseObj = window.Promise || __webpack_require__(39);
+	var _ = __webpack_require__(34);
+	var PromiseObj = window.Promise || __webpack_require__(43);
 
 	function Promise(executor, context) {
 
@@ -17865,14 +18790,14 @@
 
 
 /***/ },
-/* 39 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -18050,15 +18975,15 @@
 
 
 /***/ },
-/* 40 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 
-	var _ = __webpack_require__(30);
-	var Promise = __webpack_require__(38);
+	var _ = __webpack_require__(34);
+	var Promise = __webpack_require__(42);
 
 	module.exports = function (handler, vm) {
 
@@ -18101,14 +19026,14 @@
 
 
 /***/ },
-/* 41 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Default client.
 	 */
 
-	var xhrClient = __webpack_require__(42);
+	var xhrClient = __webpack_require__(46);
 
 	module.exports = function (request) {
 	    return (request.client || xhrClient)(request);
@@ -18116,15 +19041,15 @@
 
 
 /***/ },
-/* 42 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 
-	var _ = __webpack_require__(30);
-	var Promise = __webpack_require__(38);
+	var _ = __webpack_require__(34);
+	var Promise = __webpack_require__(42);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -18213,14 +19138,14 @@
 
 
 /***/ },
-/* 43 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	module.exports = {
 
@@ -18237,7 +19162,7 @@
 
 
 /***/ },
-/* 44 */
+/* 48 */
 /***/ function(module, exports) {
 
 	/**
@@ -18273,14 +19198,14 @@
 
 
 /***/ },
-/* 45 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 
-	var jsonpClient = __webpack_require__(46);
+	var jsonpClient = __webpack_require__(50);
 
 	module.exports = {
 
@@ -18297,15 +19222,15 @@
 
 
 /***/ },
-/* 46 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 
-	var _ = __webpack_require__(30);
-	var Promise = __webpack_require__(38);
+	var _ = __webpack_require__(34);
+	var Promise = __webpack_require__(42);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -18351,7 +19276,7 @@
 
 
 /***/ },
-/* 47 */
+/* 51 */
 /***/ function(module, exports) {
 
 	/**
@@ -18374,14 +19299,14 @@
 
 
 /***/ },
-/* 48 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	module.exports = {
 
@@ -18416,14 +19341,14 @@
 
 
 /***/ },
-/* 49 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	module.exports = {
 
@@ -18448,15 +19373,15 @@
 
 
 /***/ },
-/* 50 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 
-	var _ = __webpack_require__(30);
-	var xdrClient = __webpack_require__(51);
+	var _ = __webpack_require__(34);
+	var xdrClient = __webpack_require__(55);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 
@@ -18491,15 +19416,15 @@
 
 
 /***/ },
-/* 51 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 
-	var _ = __webpack_require__(30);
-	var Promise = __webpack_require__(38);
+	var _ = __webpack_require__(34);
+	var Promise = __webpack_require__(42);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -18534,14 +19459,14 @@
 
 
 /***/ },
-/* 52 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 
-	var _ = __webpack_require__(30);
+	var _ = __webpack_require__(34);
 
 	function Resource(url, params, actions, options) {
 

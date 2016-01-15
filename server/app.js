@@ -6,11 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressJWT = require('express-jwt');
 var config = require('./config')
+var expressValidator = require('express-validator');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
+var lesson = require('./routes/lesson');
 
 
 var app = express();
@@ -24,6 +26,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
 
 // include static public files
@@ -39,6 +42,7 @@ var jwtCheck = expressJWT({
   secret: config.secret
 });
 
+app.use('/lesson', lesson);
 app.use('/login', login);
 app.use('/signup', signup);
 app.use('/api/*', jwtCheck)

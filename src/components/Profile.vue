@@ -8,7 +8,7 @@
 
 <script>
   import auth from '../auth'
-  import { modal as Modal } from 'vue-strap'
+  import { lesson as Lesson} from './Lessons.vue'
 
   export default {
     name: "Profile",
@@ -16,16 +16,12 @@
     data() {
         return {
           user: auth.user,
-          showModal: false
         }
     },
     methods: {
-      addLesson() {
-        this.showModal = true
-      }
     },
     components: {
-      Modal
+      Lesson
     }
   }
 </script>
