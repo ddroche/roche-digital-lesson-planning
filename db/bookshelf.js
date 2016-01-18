@@ -13,9 +13,11 @@ var knex = require('knex')({
   searchPath: 'knex, public'
 });
 
+
 var Bookshelf = require('bookshelf')(knex);
 var securePassword = require('bookshelf-secure-password');
 
+Bookshelf.plugin('registry');
 Bookshelf.plugin(securePassword);
 
 module.exports = Bookshelf;

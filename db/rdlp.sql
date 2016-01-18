@@ -24,6 +24,7 @@ CREATE TABLE lessons (
     lesson_subject varchar(80),
     materials_required varchar(80),
     lesson_description varchar(1000),
+    user_id int REFERENCES users,
     created_at timestamp,
     updated_at timestamp
     );

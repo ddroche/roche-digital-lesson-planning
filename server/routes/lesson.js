@@ -13,10 +13,14 @@ router.post('/', function(req, res, next) {
       lesson_number: req.body.lessonNumber,
       lesson_subject: req.body.lessonSubject,
       lesson_description: req.body.lessonDescription,
-      materials_required: req.body.materialsRequired
+      materials_required: req.body.materialsRequired,
+      user_id: req.user.user_id
     })
     .save()
-    .then(function() {
+    .then(function(lesson) {
+      lesson.users().attach(req.user.user_id);
+      console.log(req.user);
+      console.log(req.body);
       console.log('Data saved!');
       res.sendStatus(200);
     }).catch(function(err) {
@@ -29,8 +33,10 @@ router.post('/', function(req, res, next) {
 
 router.get('/', function(req, res) {
   Lessons.forge()
+         .query({where: {user_id: req.user.user_id}})
          .fetch()
          .then( function(lessons) {
+           console.log(req.user.user_id);
            res.json(lessons);
          })
          .catch( (err) => {

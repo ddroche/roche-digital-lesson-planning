@@ -9,6 +9,8 @@ import Signup from './components/Signup.vue'
 import Login from './components/Login.vue'
 import Profile from './components/Profile.vue'
 import Lessons from './components/Lessons.vue'
+import LessonPlans from './components/LessonPlans.vue'
+import Calendar from './components/Calendar.vue'
 
 // Plugins
 import VueRouter from 'vue-router'
@@ -53,6 +55,12 @@ router.map({
   },
   '/lessons': {
     component: Lessons
+  },
+  '/lessonplans': {
+    component: LessonPlans
+  },
+  '/calendar': {
+    component: Calendar
   }
 })
 

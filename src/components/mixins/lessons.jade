@@ -1,0 +1,24 @@
+//- create lesson mixin
+include ./forms.jade
+
+mixin createLessonModal
+  modal(:show.sync="showModal").container
+    div(slot="modal-header").modal-header
+      h4.modal-title Create Lesson
+    div(slot="modal-body").modal-body
+      +createLesson
+    div(slot="modal-footer").modal-footer
+      button(type='button' @click="exitLesson()").btn.btn-default Close
+      button(type='submit' @click="saveLesson()").btn.btn-primary Save
+
+//- end lesson modal mixin
+
+mixin lessonInfoModal()
+  p {{ lesson.lesson_name }}
+  modal(:show.sync="showLessonModal").container
+    div(slot="modal-header").modal-header
+      h4(class="modal-title")= title
+    div(slot="modal-body").modal-body
+      // show lesson here
+    div(slot="modal-footer").modal-footer
+       button(type='button' @click="exitLessonModal()").btn.btn-default Close

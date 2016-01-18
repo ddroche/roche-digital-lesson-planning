@@ -26,41 +26,50 @@ mixin login
 
 mixin signup
     validator(name='validation1')
-        form(novalidate).form-horizontal.col-sm-12
+        form(novalidate).form-horizontal.col-sm-9
             .form-group
                 label(for='firstName').col-sm-3.control-label First Name
                 .col-sm-9
                     input(type='text' name='firstName' id='firstName' placeholder='First Name'
-                          v-model='credentials.firstName' v-validate:credentials.firstName="['required']").form-control
+                          v-model='credentials.firstName' v-validate:firstname="{required: true}").form-control
             .form-group
                 label(for='lastName').col-sm-3.control-label Last Name
                 .col-sm-9
                     input(type='text' name='lastName' id='lastName' placeholder='Last Name'
-                          v-model='credentials.lastName' v-validate:credentials.lastName="['required']").form-control
+                          v-model='credentials.lastName' v-validate:lastname="{required: true}").form-control
             .form-group
                 label(for='gradeLevel').col-sm-3.control-label Grade Level
                 .col-sm-9
-                    select(v-model='credentials.gradeLevel' v-validate:credentials.gradeLevel="['required']").form-control
+                    select(v-model='credentials.gradeLevel' v-validate:gradelevel="{required: true}").form-control
                             - for(var i = 1; i <= 12; i++)
                                  option= i
             .form-group
                 label(for='inputEmail').col-sm-3.control-label Email
                 .col-sm-9
                     input(type='email' name='username' id='inputEmail' placeholder='Enter your username'
-                          v-model='credentials.username' v-validate:credentials.username="['required']").form-control
+                          v-model='credentials.username' v-validate:username="{required: true}").form-control
             .form-group
                 label(for='inputPass').col-sm-3.control-label Password
                 .col-sm-9
                     input(type='password' name='password' id='inputPass' placeholder='Enter your password'
-                          v-model='credentials.password' v-validate:credentials.password="['required']").form-control
-            div
-                span(v-show="$validation1.credentials.firstName.required") Required a first name.
-                span(v-show="$validation1.credentials.lastName.required") Required a last name.
-                span(v-show="$validation1.credentials.gradeLevel.required") Required a grade level.
-                span(v-show="$validation1.credentials.username.required") Required a email.
-                span(v-show="$validation1.credentials.password.required") Required a password.
+                          v-model='credentials.password' v-validate:password="{required: true, minlength: 6}").form-control
+
             .form-group
-                button(type='submit' @click="submit()" v-if="$validation1.valid").col-sm-offset-7.col-sm-4.btn.btn-default Register
+                button(type='submit' @click.prevent="submit()" v-if="$validation1.valid").col-sm-offset-7.col-sm-4.btn.btn-default Register
+
+        div.col-sm-3
+            p(v-show="$validation1.firstname.required" role="alert").alert.alert-danger First Name Required
+            p(v-else="$validation1.firstname.required" role="alert").alert.alert-success First Name Required
+            p(v-show="$validation1.lastname.required" role="alert").alert.alert-danger Last Name Required
+            p(v-else="$validation1.lastname.required" role="alert").alert.alert-success Last Name Required
+            //p(v-show="$validation1.gradelevel.required" role="alert").alert.alert-danger Grade Level Required
+            //p(v-else="$validation1.gradelevel.required" role="alert").alert.alert-success Grade Level Required
+            p(v-show="$validation1.username.required" role="alert").alert.alert-danger Email Required
+            p(v-else="$validation1.username.required" role="alert").alert.alert-success Email Required
+            //p(v-show="$validation1.password.required") Password Required
+            p(v-show="$validation1.password.minlength" role="alert").alert.alert-danger Password must be longer than 6 characters
+            p(v-else="$validation1.password.minlength" role="alert").alert.alert-success Password must be longer than 6 characters
+
 
 //- End Signup form
 

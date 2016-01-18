@@ -1,38 +1,57 @@
 <template lang="jade">
 include ./mixins/sidebar.jade
 include ./mixins/forms.jade
-.row
+include ./mixins/lessons.jade
+.row()
   +sidebar //- .col-sm-2
   .col-sm-10
-    button(@click="addLesson()").btn.btn-default Create Lesson
-  modal(:show.sync="showModal").container
-    div(slot="modal-header").modal-header
-      h4.modal-title Create Lesson
-    div(slot="modal-body").modal-body
-      +createLesson
-    div(slot="modal-footer").modal-footer
-      button(type='button' @click="exitLesson()").btn.btn-default Close
-      button(type='submit' @click="saveLesson()").btn.btn-primary Save
-  div.lessons
-    ul
-      li(v-for="lesson in lessons") {{ lesson.lesson_name }}
+    div(:lessons="getLessons()").lessons
+      h4 Lessons
+      accordion(:one-at-atime="checked")
+          panel(header="Math" v-ref:lesson)
+            ul
+              //li(v-for="lesson in lessons.mathLessons" @click="$parent.showLessonModal()")
+              //  +lessonInfoModal()
+              li(v-for="lesson in lessons.mathLessons") {{ lesson.lesson_name }}
+          panel(header="Science")
+            ul
+              li(v-for="lesson in lessons.scienceLessons") {{ lesson.lesson_name }}
+          panel(header="Art")
+            ul
+              li(v-for="lesson in lessons.artLessons") {{ lesson.lesson_name }}
+          panel(header="Social Studies")
+            ul
+              li(v-for="lesson in lessons.ssLessons") {{ lesson.lesson_name }}
+    div
+      button(@click="addLesson()").btn.btn-default Create Lesson
+    +createLessonModal
+
 </template>
 
 <script>
   import auth from '../auth'
   import { modal as Modal } from 'vue-strap'
+  import { accordion as Accordion } from 'vue-strap'
+  import { panel as Panel } from 'vue-strap'
   import conf from '../config'
 
-  const LESSON_URL = conf.API_URL + '/lesson'
+  const LESSON_URL = conf.API_URL + '/api/lesson'
 
   export default {
     name: "Lesson",
     props: [],
     data() {
       return {
-        lessons: [],
+        lessons: {
+          mathLessons: [],
+          scienceLessons: [],
+          artLessons: [],
+          ssLessons: []
+        },
         user: auth.user,
         showModal: false,
+        showLessonModal: false,
+        checked: false,
         lesson: {
           lessonNumber: '',
           lessonName: '',
@@ -44,6 +63,12 @@ include ./mixins/forms.jade
       }
     },
     methods: {
+      showLessonModal() {
+        this.showLessonModal = true
+      },
+      exitLessonModal() {
+        this.showLessonModal = false
+      },
       addLesson() {
         this.showModal = true
       },
@@ -69,7 +94,7 @@ include ./mixins/forms.jade
         }
         console.log(lesson)
         this.$http.post(LESSON_URL, lesson, (data) => {
-            console.log('Data' + lesson)
+            console.log('Data received')
             this.exitLesson()
             this.clearLesson()
             this.getLessons()
@@ -77,14 +102,32 @@ include ./mixins/forms.jade
       },
       getLessons() {
         this.$http.get(LESSON_URL, (data) => {
+          console.log(data);
           data.forEach((elem) => {
-            this.lessons.push(elem)
+            var subject = elem.lesson_subject
+            console.log(subject)
+            if(subject == "math" || subject ==  "Math") {
+              this.lessons.mathLessons.push(elem)
+            } else if(subject == "science" || subject == "Science") {
+              this.lessons.scienceLessons.push(elem)
+            } else if(subject == "art" || subject == "Art") {
+              this.lessons.artLessons.push(elem)
+            } else if(subject == "social studies" || subject == "Social Studies") {
+              this.lessons.ssLessons.push(elem)
+            }
           });
         })
       }
     },
     components: {
-      Modal
+      Modal,
+      Accordion,
+      Panel
     }
   }
 </script>
+
+<style>
+ul {
+  list-style: none;
+}

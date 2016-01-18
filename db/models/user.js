@@ -27,10 +27,10 @@ var User = Bookshelf.Model.extend({
   },
   hasTimestamps: true,
   lessons: function() {
-    return this.belongsToMany(Lesson, 'users_lessons', 'user_id', 'lesson_id');
+    return this.belongsToMany('Lesson', 'users_lessons', 'user_id', 'lesson_id');
   },
 });
 
 
 
-module.exports = User;
+module.exports = Bookshelf.model('User', User);

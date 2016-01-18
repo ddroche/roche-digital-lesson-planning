@@ -67,19 +67,19 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Home = __webpack_require__(16);
+	var _Home = __webpack_require__(20);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _SecretQuote = __webpack_require__(19);
+	var _SecretQuote = __webpack_require__(23);
 
 	var _SecretQuote2 = _interopRequireDefault(_SecretQuote);
 
-	var _Signup = __webpack_require__(22);
+	var _Signup = __webpack_require__(26);
 
 	var _Signup2 = _interopRequireDefault(_Signup);
 
-	var _Login = __webpack_require__(26);
+	var _Login = __webpack_require__(30);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
@@ -91,15 +91,23 @@
 
 	var _Lessons2 = _interopRequireDefault(_Lessons);
 
-	var _vueRouter = __webpack_require__(29);
+	var _LessonPlans = __webpack_require__(33);
+
+	var _LessonPlans2 = _interopRequireDefault(_LessonPlans);
+
+	var _Calendar = __webpack_require__(36);
+
+	var _Calendar2 = _interopRequireDefault(_Calendar);
+
+	var _vueRouter = __webpack_require__(39);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-	var _vueResource = __webpack_require__(30);
+	var _vueResource = __webpack_require__(40);
 
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 
-	var _vueValidator = __webpack_require__(24);
+	var _vueValidator = __webpack_require__(28);
 
 	var _vueValidator2 = _interopRequireDefault(_vueValidator);
 
@@ -152,6 +160,12 @@
 	  },
 	  '/lessons': {
 	    component: _Lessons2.default
+	  },
+	  '/lessonplans': {
+	    component: _LessonPlans2.default
+	  },
+	  '/calendar': {
+	    component: _Calendar2.default
 	  }
 	});
 
@@ -9698,7 +9712,7 @@
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(5)
-	__vue_template__ = __webpack_require__(15)
+	__vue_template__ = __webpack_require__(19)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9738,7 +9752,7 @@
 	//             .container
 	//                 ul.nav.navbar-nav
 	//                     li
-	//                         a(v-link="") Welcome{{ user.name }}!
+	//                         a(v-link="") <strong>Roche Digital Lesson Planning</strong>
 	//                     li
 	//                         a(v-link="'home'") Home
 	//                     li
@@ -9885,7 +9899,7 @@
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(9)
-	__vue_template__ = __webpack_require__(14)
+	__vue_template__ = __webpack_require__(18)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9949,8 +9963,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(11)
-	__vue_template__ = __webpack_require__(13)
+	__webpack_require__(11)
+	__vue_script__ = __webpack_require__(15)
+	__vue_template__ = __webpack_require__(17)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -9970,6 +9985,324 @@
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(12);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(14)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-205eae48&file=Lessons.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Lessons.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-205eae48&file=Lessons.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Lessons.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(13)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\nul {\n  list-style: none;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+
+		if (media) {
+			styleElement.setAttribute("media", media);
+		}
+
+		if (sourceMap) {
+			// https://developer.chrome.com/devtools/docs/javascript-debugging
+			// this makes source maps inside style tags work properly in Chrome
+			css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */';
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -9980,7 +10313,7 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _vueStrap = __webpack_require__(12);
+	var _vueStrap = __webpack_require__(16);
 
 	var _config = __webpack_require__(7);
 
@@ -9988,24 +10321,34 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var LESSON_URL = _config2.default.API_URL + '/lesson'; // <template lang="jade">
+	var LESSON_URL = _config2.default.API_URL + '/api/lesson'; // <template lang="jade">
 	// include ./mixins/sidebar.jade
 	// include ./mixins/forms.jade
-	// .row
+	// include ./mixins/lessons.jade
+	// .row()
 	//   +sidebar //- .col-sm-2
 	//   .col-sm-10
-	//     button(@click="addLesson()").btn.btn-default Create Lesson
-	//   modal(:show.sync="showModal").container
-	//     div(slot="modal-header").modal-header
-	//       h4.modal-title Create Lesson
-	//     div(slot="modal-body").modal-body
-	//       +createLesson
-	//     div(slot="modal-footer").modal-footer
-	//       button(type='button' @click="exitLesson()").btn.btn-default Close
-	//       button(type='submit' @click="saveLesson()").btn.btn-primary Save
-	//   div.lessons
-	//     ul
-	//       li(v-for="lesson in lessons") {{ lesson.lesson_name }}
+	//     div(:lessons="getLessons()").lessons
+	//       h4 Lessons
+	//       accordion(:one-at-atime="checked")
+	//           panel(header="Math" v-ref:lesson)
+	//             ul
+	//               //li(v-for="lesson in lessons.mathLessons" @click="$parent.showLessonModal()")
+	//               //  +lessonInfoModal()
+	//               li(v-for="lesson in lessons.mathLessons") {{ lesson.lesson_name }}
+	//           panel(header="Science")
+	//             ul
+	//               li(v-for="lesson in lessons.scienceLessons") {{ lesson.lesson_name }}
+	//           panel(header="Art")
+	//             ul
+	//               li(v-for="lesson in lessons.artLessons") {{ lesson.lesson_name }}
+	//           panel(header="Social Studies")
+	//             ul
+	//               li(v-for="lesson in lessons.ssLessons") {{ lesson.lesson_name }}
+	//     div
+	//       button(@click="addLesson()").btn.btn-default Create Lesson
+	//     +createLessonModal
+	//
 	// </template>
 	//
 	// <script>
@@ -10015,9 +10358,16 @@
 	  props: [],
 	  data: function data() {
 	    return {
-	      lessons: [],
+	      lessons: {
+	        mathLessons: [],
+	        scienceLessons: [],
+	        artLessons: [],
+	        ssLessons: []
+	      },
 	      user: _auth2.default.user,
 	      showModal: false,
+	      showLessonModal: false,
+	      checked: false,
 	      lesson: {
 	        lessonNumber: '',
 	        lessonName: '',
@@ -10030,6 +10380,12 @@
 	  },
 
 	  methods: {
+	    showLessonModal: function showLessonModal() {
+	      this.showLessonModal = true;
+	    },
+	    exitLessonModal: function exitLessonModal() {
+	      this.showLessonModal = false;
+	    },
 	    addLesson: function addLesson() {
 	      this.showModal = true;
 	    },
@@ -10057,7 +10413,7 @@
 	      };
 	      console.log(lesson);
 	      this.$http.post(LESSON_URL, lesson, function (data) {
-	        console.log('Data' + lesson);
+	        console.log('Data received');
 	        _this.exitLesson();
 	        _this.clearLesson();
 	        _this.getLessons();
@@ -10066,21 +10422,44 @@
 	    getLessons: function getLessons() {
 	      var _this2 = this;
 
+	      //this.lessons = {}
+	      //this.lessons.mathLessons = []
+	      //this.lessons.scienceLessons = []
+	      //this.lessons.artLessons = []
+	      //this.lessons.ssLessons = []
 	      this.$http.get(LESSON_URL, function (data) {
+	        console.log(data);
 	        data.forEach(function (elem) {
-	          _this2.lessons.push(elem);
+	          var subject = elem.lesson_subject;
+	          console.log(subject);
+	          if (subject == "math" || subject == "Math") {
+	            _this2.lessons.mathLessons.push(elem);
+	          } else if (subject == "science" || subject == "Science") {
+	            _this2.lessons.scienceLessons.push(elem);
+	          } else if (subject == "art" || subject == "Art") {
+	            _this2.lessons.artLessons.push(elem);
+	          } else if (subject == "social studies" || subject == "Social Studies") {
+	            _this2.lessons.ssLessons.push(elem);
+	          }
 	        });
 	      });
 	    }
 	  },
 	  components: {
-	    Modal: _vueStrap.modal
+	    Modal: _vueStrap.modal,
+	    Accordion: _vueStrap.accordion,
+	    Panel: _vueStrap.panel
 	  }
 	};
 	// </script>
+	//
+	// <style>
+	// ul {
+	//   list-style: none;
+	// }
 
 /***/ },
-/* 12 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -14197,30 +14576,30 @@
 	//# sourceMappingURL=vue-strap.js.map
 
 /***/ },
-/* 13 */
+/* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello{{ user.name }}!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><button @click=\"addLesson()\" class=\"btn btn-default\">Create Lesson</button></div><modal :show.sync=\"showModal\" class=\"container\"><div slot=\"modal-header\" class=\"modal-header\"><h4 class=\"modal-title\">Create Lesson</h4></div><div slot=\"modal-body\" class=\"modal-body\"><div class=\"row\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"lessonNumber\" class=\"col-sm-3 control-label\">Lesson Number</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonNumber\" id=\"lessonNumber\" placeholder=\"Lesson Number\" v-model=\"lesson.lessonNumber\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonName\" class=\"col-sm-3 control-label\">Lesson Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonName\" id=\"lessonName\" placeholder=\"Lesson Name\" v-model=\"lesson.lessonName\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonUnit\" class=\"col-sm-3 control-label\">Lesson Unit</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonUnit\" id=\"lessonUnit\" placeholder=\"Lesson Unit\" v-model=\"lesson.lessonUnit\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonSubject\" class=\"col-sm-3 control-label\">Lesson Subject</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonSubject\" id=\"lessonSubject\" placeholder=\"Lesson Subject\" v-model=\"lesson.lessonSubject\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"materialsRequired\" class=\"col-sm-3 control-label\">Required Materials</label><div class=\"col-sm-9\"><textarea rows=\"3\" name=\"materialsRequired\" id=\"materialsRequired\" placeholder=\"Required Materials\" v-model=\"lesson.materialsRequired\" class=\"form-control\"></textarea></div></div><div class=\"form-group\"><label for=\"lessonDescription\" class=\"col-sm-3 control-label\">Lesson Description</label><div class=\"col-sm-9\"><textarea rows=\"3\" name=\"lessonDescription\" id=\"lessonDescription\" placeholder=\"Lesson Description\" v-model=\"lesson.lessonDescription\" class=\"form-control\"></textarea></div></div></form></div></div><div slot=\"modal-footer\" class=\"modal-footer\"><button type=\"button\" @click=\"exitLesson()\" class=\"btn btn-default\">Close</button><button type=\"submit\" @click=\"saveLesson()\" class=\"btn btn-primary\">Save</button></div></modal><div class=\"lessons\"><ul><li v-for=\"lesson in lessons\">{{ lesson.lesson_name }}</li></ul></div></div>";
+	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><div :lessons=\"getLessons()\" class=\"lessons\"><h4>Lessons</h4><accordion :one-at-atime=\"checked\"><panel header=\"Math\" v-ref:lesson=\"v-ref:lesson\"><ul><!--li(v-for=\"lesson in lessons.mathLessons\" @click=\"$parent.showLessonModal()\")--><!--  +lessonInfoModal()--><li v-for=\"lesson in lessons.mathLessons\">{{ lesson.lesson_name }}</li></ul></panel><panel header=\"Science\"><ul><li v-for=\"lesson in lessons.scienceLessons\">{{ lesson.lesson_name }}</li></ul></panel><panel header=\"Art\"><ul><li v-for=\"lesson in lessons.artLessons\">{{ lesson.lesson_name }}</li></ul></panel><panel header=\"Social Studies\"><ul><li v-for=\"lesson in lessons.ssLessons\">{{ lesson.lesson_name }}</li></ul></panel></accordion></div><div><button @click=\"addLesson()\" class=\"btn btn-default\">Create Lesson</button></div><modal :show.sync=\"showModal\" class=\"container\"><div slot=\"modal-header\" class=\"modal-header\"><h4 class=\"modal-title\">Create Lesson</h4></div><div slot=\"modal-body\" class=\"modal-body\"><div class=\"row\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"lessonNumber\" class=\"col-sm-3 control-label\">Lesson Number</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonNumber\" id=\"lessonNumber\" placeholder=\"Lesson Number\" v-model=\"lesson.lessonNumber\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonName\" class=\"col-sm-3 control-label\">Lesson Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonName\" id=\"lessonName\" placeholder=\"Lesson Name\" v-model=\"lesson.lessonName\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonUnit\" class=\"col-sm-3 control-label\">Lesson Unit</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonUnit\" id=\"lessonUnit\" placeholder=\"Lesson Unit\" v-model=\"lesson.lessonUnit\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lessonSubject\" class=\"col-sm-3 control-label\">Lesson Subject</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lessonSubject\" id=\"lessonSubject\" placeholder=\"Lesson Subject\" v-model=\"lesson.lessonSubject\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"materialsRequired\" class=\"col-sm-3 control-label\">Required Materials</label><div class=\"col-sm-9\"><textarea rows=\"3\" name=\"materialsRequired\" id=\"materialsRequired\" placeholder=\"Required Materials\" v-model=\"lesson.materialsRequired\" class=\"form-control\"></textarea></div></div><div class=\"form-group\"><label for=\"lessonDescription\" class=\"col-sm-3 control-label\">Lesson Description</label><div class=\"col-sm-9\"><textarea rows=\"3\" name=\"lessonDescription\" id=\"lessonDescription\" placeholder=\"Lesson Description\" v-model=\"lesson.lessonDescription\" class=\"form-control\"></textarea></div></div></form></div></div><div slot=\"modal-footer\" class=\"modal-footer\"><button type=\"button\" @click=\"exitLesson()\" class=\"btn btn-default\">Close</button><button type=\"submit\" @click=\"saveLesson()\" class=\"btn btn-primary\">Save</button></div></modal></div></div>";
 
 /***/ },
-/* 14 */
+/* 18 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello{{ user.name }}!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><h3>Hi {{ user.name }}</h3></div></div>";
+	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><h3>Hi {{ user.name }}</h3></div></div>";
 
 /***/ },
-/* 15 */
+/* 19 */
 /***/ function(module, exports) {
 
-	module.exports = "<div><nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"\">Welcome{{ user.name }}!</a></li><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'profile'\" v-if=\"user.authenticated\">Profile</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div></div>";
+	module.exports = "<div><nav class=\"navbar navbar-default\"><div class=\"container\"><ul class=\"nav navbar-nav\"><li><a v-link=\"\"><strong>Roche Digital Lesson Planning</strong></a></li><li><a v-link=\"'home'\">Home</a></li><li><a v-link=\"'login'\" v-if=\"!user.authenticated\">Login</a></li><li><a v-link=\"'signup'\" v-if=\"!user.authenticated\">Sign Up</a></li><li><a v-link=\"'profile'\" v-if=\"user.authenticated\">Profile</a></li><li><a v-link=\"'login'\" v-if=\"user.authenticated\" @click=\"logout()\">Logout</a></li></ul></div></nav><div class=\"container\"><router-view></router-view></div></div>";
 
 /***/ },
-/* 16 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(17)
-	__vue_template__ = __webpack_require__(18)
+	__vue_script__ = __webpack_require__(21)
+	__vue_template__ = __webpack_require__(22)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14237,7 +14616,7 @@
 	})()}
 
 /***/ },
-/* 17 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14285,7 +14664,7 @@
 	                username: this.credentials.username,
 	                password: this.credentials.password
 	            };
-	            _auth2.default.login(this, credentials, '/secretquote');
+	            _auth2.default.login(this, credentials, '/profile');
 	        },
 	        signup: function signup() {
 	            _index.router.go('/signup');
@@ -14311,18 +14690,18 @@
 	// <script>
 
 /***/ },
-/* 18 */
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = "<div><div class=\"container\"><div class=\"col-sm-5 col-sm-offset-1\"><h1>Roche Digital Lesson Planning!</h1><h3>An innovative approche to learning</h3></div><div class=\"col-sm-5 col-sm-offset-1\"><h2>Welcome Members!</h2><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-sm-offset-2.col-sm-4--><!--        .checkbox--><!--            label.col-sm-12--><!--                .col-sm-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click.prevent=\"submit()\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Sign in</button></div></form><div class=\"row\"><div class=\"col-sm-offset-7\"><button type=\"submit\" @click=\"signup()\" class=\"btn btn-default\">Not a member yet?</button></div></div></div></div></div>";
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(20)
-	__vue_template__ = __webpack_require__(21)
+	__vue_script__ = __webpack_require__(24)
+	__vue_template__ = __webpack_require__(25)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14339,7 +14718,7 @@
 	})()}
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14395,18 +14774,18 @@
 	// <script>
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"col-sm-6 col-sm-offset-3\">\n  <h1>Get a Secret Chuck Norris Quote!</h1>\n  <button class=\"btn btn-warning\" v-on:click=\"getQuote()\">Get a Quote</button>\n  <div class=\"quote-area\" v-if=\"quote\">\n    <h2><blockquote>{{ quote }}</blockquote></h2>\n  </div>\n</div>\n";
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(23)
-	__vue_template__ = __webpack_require__(25)
+	__vue_script__ = __webpack_require__(27)
+	__vue_template__ = __webpack_require__(29)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14423,7 +14802,7 @@
 	})()}
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14440,7 +14819,7 @@
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _vueValidator = __webpack_require__(24);
+	var _vueValidator = __webpack_require__(28);
 
 	var _vueValidator2 = _interopRequireDefault(_vueValidator);
 
@@ -14490,7 +14869,7 @@
 	// <script>
 
 /***/ },
-/* 24 */
+/* 28 */
 /***/ function(module, exports) {
 
 	/*!
@@ -15954,18 +16333,18 @@
 	module.exports = plugin;
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<div><div class=\"container\"><h1 class=\"col-sm-12\">Register</h1></div><div class=\"row\"><validator name=\"validation1\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"firstName\" class=\"col-sm-3 control-label\">First Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"firstName\" id=\"firstName\" placeholder=\"First Name\" v-model=\"credentials.firstName\" v-validate:credentials.firstName=\"['required']\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lastName\" class=\"col-sm-3 control-label\">Last Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lastName\" id=\"lastName\" placeholder=\"Last Name\" v-model=\"credentials.lastName\" v-validate:credentials.lastName=\"['required']\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"gradeLevel\" class=\"col-sm-3 control-label\">Grade Level</label><div class=\"col-sm-9\"><select v-model=\"credentials.gradeLevel\" v-validate:credentials.gradeLevel=\"['required']\" class=\"form-control\"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div></div><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" v-validate:credentials.username=\"['required']\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" v-validate:credentials.password=\"['required']\" class=\"form-control\"/></div></div><div><span v-show=\"$validation1.credentials.firstName.required\">Required a first name.</span><span v-show=\"$validation1.credentials.lastName.required\">Required a last name.</span><span v-show=\"$validation1.credentials.gradeLevel.required\">Required a grade level.</span><span v-show=\"$validation1.credentials.username.required\">Required a email.</span><span v-show=\"$validation1.credentials.password.required\">Required a password.</span></div><div class=\"form-group\"><button type=\"submit\" @click=\"submit()\" v-if=\"$validation1.valid\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Register</button></div></form></validator></div></div>";
+	module.exports = "<div><div class=\"container\"><h1 class=\"col-sm-12\">Register</h1></div><div class=\"row\"><validator name=\"validation1\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-9\"><div class=\"form-group\"><label for=\"firstName\" class=\"col-sm-3 control-label\">First Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"firstName\" id=\"firstName\" placeholder=\"First Name\" v-model=\"credentials.firstName\" v-validate:firstname=\"{required: true}\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"lastName\" class=\"col-sm-3 control-label\">Last Name</label><div class=\"col-sm-9\"><input type=\"text\" name=\"lastName\" id=\"lastName\" placeholder=\"Last Name\" v-model=\"credentials.lastName\" v-validate:lastname=\"{required: true}\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"gradeLevel\" class=\"col-sm-3 control-label\">Grade Level</label><div class=\"col-sm-9\"><select v-model=\"credentials.gradeLevel\" v-validate:gradelevel=\"{required: true}\" class=\"form-control\"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div></div><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" v-validate:username=\"{required: true}\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" v-validate:password=\"{required: true, minlength: 6}\" class=\"form-control\"/></div></div><div class=\"form-group\"><button type=\"submit\" @click.prevent=\"submit()\" v-if=\"$validation1.valid\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Register</button></div></form><div class=\"col-sm-3\"><p v-show=\"$validation1.firstname.required\" role=\"alert\" class=\"alert alert-danger\">First Name Required</p><p v-else=\"$validation1.firstname.required\" role=\"alert\" class=\"alert alert-success\">First Name Required</p><p v-show=\"$validation1.lastname.required\" role=\"alert\" class=\"alert alert-danger\">Last Name Required</p><p v-else=\"$validation1.lastname.required\" role=\"alert\" class=\"alert alert-success\">Last Name Required</p><!--p(v-show=\"$validation1.gradelevel.required\" role=\"alert\").alert.alert-danger Grade Level Required--><!--p(v-else=\"$validation1.gradelevel.required\" role=\"alert\").alert.alert-success Grade Level Required--><p v-show=\"$validation1.username.required\" role=\"alert\" class=\"alert alert-danger\">Email Required</p><p v-else=\"$validation1.username.required\" role=\"alert\" class=\"alert alert-success\">Email Required</p><!--p(v-show=\"$validation1.password.required\") Password Required--><p v-show=\"$validation1.password.minlength\" role=\"alert\" class=\"alert alert-danger\">Password must be longer than 6 characters</p><p v-else=\"$validation1.password.minlength\" role=\"alert\" class=\"alert alert-success\">Password must be longer than 6 characters</p></div></validator></div></div>";
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(27)
-	__vue_template__ = __webpack_require__(28)
+	__vue_script__ = __webpack_require__(31)
+	__vue_template__ = __webpack_require__(32)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15982,7 +16361,7 @@
 	})()}
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16037,13 +16416,145 @@
 	// </script>
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = "<div><div class=\"container\"><h1 class=\"col-sm-12\">Login</h1></div><div class=\"row\"><form novalidate=\"novalidate\" class=\"form-horizontal col-sm-12\"><div class=\"form-group\"><label for=\"inputEmail\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" name=\"username\" id=\"inputEmail\" placeholder=\"Enter your username\" v-model=\"credentials.username\" class=\"form-control\"/></div></div><div class=\"form-group\"><label for=\"inputPass\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" name=\"password\" id=\"inputPass\" placeholder=\"Enter your password\" v-model=\"credentials.password\" class=\"form-control\"/></div></div><!--.form-group--><!--    .col-sm-offset-2.col-sm-4--><!--        .checkbox--><!--            label.col-sm-12--><!--                .col-sm-12--><!--                    input(type='checkbox')--><!--                    | Remember me--><div class=\"form-group\"><button type=\"submit\" @click.prevent=\"submit()\" class=\"col-sm-offset-7 col-sm-4 btn btn-default\">Sign in</button></div></form></div></div>";
 
 /***/ },
-/* 29 */
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(34)
+	__vue_template__ = __webpack_require__(35)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/LessonPlans.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  name: "LessonPlans",
+	  data: function data() {
+	    return {
+	      user: _auth2.default.user
+	    };
+	  },
+
+	  methods: {}
+	};
+	// </script>
+	// <template lang="jade">
+	// include ./mixins/sidebar.jade
+	// include ./mixins/forms.jade
+	// .row
+	//  +sidebar //- .col-sm-2
+	//  .col-sm-10
+	//     h1.col-sm-12 Lesson Plans are coming soon!
+	// </template>
+	//
+	// <script>
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><h1 class=\"col-sm-12\">Lesson Plans are coming soon!</h1></div></div>";
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(37)
+	__vue_template__ = __webpack_require__(38)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "/Users/Roche/Documents/Prime/Personal Projects/Roche Digital Lesson Planning/src/components/Calendar.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _auth = __webpack_require__(6);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  name: "Calendar",
+	  data: function data() {
+	    return {
+	      user: _auth2.default.user
+	    };
+	  },
+
+	  methods: {}
+	};
+	// </script>
+	// <template lang="jade">
+	// include ./mixins/sidebar.jade
+	// include ./mixins/forms.jade
+	// .row
+	//   +sidebar //- .col-sm-2
+	//   .col-sm-10
+	//     h1.col-sm-12 Calendar is coming soon!
+	// </template>
+	//
+	// <script>
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"row\"><div class=\"col-sm-2 sidebar\"><ul class=\"nav nav-pills nav-stacked\"><li><a v-link=\"'profile'\">Hello!</a></li><li><a v-link=\"'lessons'\">Lessons</a></li><li><a v-link=\"'lessonplans'\">Lesson Plans</a></li><li><a v-link=\"'calendar'\">Calendar</a></li></ul></div><div class=\"col-sm-10\"><h1 class=\"col-sm-12\">Calendar is coming soon!</h1></div></div>";
+
+/***/ },
+/* 39 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -18582,7 +19093,7 @@
 	module.exports = Router;
 
 /***/ },
-/* 30 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18591,16 +19102,16 @@
 
 	function install(Vue) {
 
-	    var _ = __webpack_require__(31);
+	    var _ = __webpack_require__(41);
 
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 
-	    Vue.url = __webpack_require__(32);
-	    Vue.http = __webpack_require__(38);
-	    Vue.resource = __webpack_require__(53);
-	    Vue.Promise = __webpack_require__(39);
+	    Vue.url = __webpack_require__(42);
+	    Vue.http = __webpack_require__(48);
+	    Vue.resource = __webpack_require__(63);
+	    Vue.Promise = __webpack_require__(49);
 
 	    Object.defineProperties(Vue.prototype, {
 
@@ -18641,7 +19152,7 @@
 
 
 /***/ },
-/* 31 */
+/* 41 */
 /***/ function(module, exports) {
 
 	/**
@@ -18769,14 +19280,14 @@
 
 
 /***/ },
-/* 32 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 
@@ -18812,10 +19323,10 @@
 	 */
 
 	Url.transforms = [
-	    __webpack_require__(33),
-	    __webpack_require__(35),
-	    __webpack_require__(36),
-	    __webpack_require__(37)
+	    __webpack_require__(43),
+	    __webpack_require__(45),
+	    __webpack_require__(46),
+	    __webpack_require__(47)
 	];
 
 	/**
@@ -18905,14 +19416,14 @@
 
 
 /***/ },
-/* 33 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 
-	var UrlTemplate = __webpack_require__(34);
+	var UrlTemplate = __webpack_require__(44);
 
 	module.exports = function (options) {
 
@@ -18927,7 +19438,7 @@
 
 
 /***/ },
-/* 34 */
+/* 44 */
 /***/ function(module, exports) {
 
 	/**
@@ -19083,14 +19594,14 @@
 
 
 /***/ },
-/* 35 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	module.exports = function (options, next) {
 
@@ -19135,14 +19646,14 @@
 
 
 /***/ },
-/* 36 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	module.exports = function (options, next) {
 
@@ -19165,14 +19676,14 @@
 
 
 /***/ },
-/* 37 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	module.exports = function (options, next) {
 
@@ -19187,17 +19698,17 @@
 
 
 /***/ },
-/* 38 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 
-	var _ = __webpack_require__(31);
-	var Promise = __webpack_require__(39);
-	var interceptor = __webpack_require__(41);
-	var defaultClient = __webpack_require__(42);
+	var _ = __webpack_require__(41);
+	var Promise = __webpack_require__(49);
+	var interceptor = __webpack_require__(51);
+	var defaultClient = __webpack_require__(52);
 	var jsonType = {'Content-Type': 'application/json'};
 
 	function Http(url, options) {
@@ -19250,13 +19761,13 @@
 	};
 
 	Http.interceptors = [
-	    __webpack_require__(44),
-	    __webpack_require__(45),
-	    __webpack_require__(46),
-	    __webpack_require__(48),
-	    __webpack_require__(49),
-	    __webpack_require__(50),
-	    __webpack_require__(51)
+	    __webpack_require__(54),
+	    __webpack_require__(55),
+	    __webpack_require__(56),
+	    __webpack_require__(58),
+	    __webpack_require__(59),
+	    __webpack_require__(60),
+	    __webpack_require__(61)
 	];
 
 	Http.headers = {
@@ -19291,15 +19802,15 @@
 
 
 /***/ },
-/* 39 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 
-	var _ = __webpack_require__(31);
-	var PromiseObj = window.Promise || __webpack_require__(40);
+	var _ = __webpack_require__(41);
+	var PromiseObj = window.Promise || __webpack_require__(50);
 
 	function Promise(executor, context) {
 
@@ -19406,14 +19917,14 @@
 
 
 /***/ },
-/* 40 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -19591,15 +20102,15 @@
 
 
 /***/ },
-/* 41 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 
-	var _ = __webpack_require__(31);
-	var Promise = __webpack_require__(39);
+	var _ = __webpack_require__(41);
+	var Promise = __webpack_require__(49);
 
 	module.exports = function (handler, vm) {
 
@@ -19642,14 +20153,14 @@
 
 
 /***/ },
-/* 42 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Default client.
 	 */
 
-	var xhrClient = __webpack_require__(43);
+	var xhrClient = __webpack_require__(53);
 
 	module.exports = function (request) {
 	    return (request.client || xhrClient)(request);
@@ -19657,15 +20168,15 @@
 
 
 /***/ },
-/* 43 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 
-	var _ = __webpack_require__(31);
-	var Promise = __webpack_require__(39);
+	var _ = __webpack_require__(41);
+	var Promise = __webpack_require__(49);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -19754,14 +20265,14 @@
 
 
 /***/ },
-/* 44 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	module.exports = {
 
@@ -19778,7 +20289,7 @@
 
 
 /***/ },
-/* 45 */
+/* 55 */
 /***/ function(module, exports) {
 
 	/**
@@ -19814,14 +20325,14 @@
 
 
 /***/ },
-/* 46 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 
-	var jsonpClient = __webpack_require__(47);
+	var jsonpClient = __webpack_require__(57);
 
 	module.exports = {
 
@@ -19838,15 +20349,15 @@
 
 
 /***/ },
-/* 47 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 
-	var _ = __webpack_require__(31);
-	var Promise = __webpack_require__(39);
+	var _ = __webpack_require__(41);
+	var Promise = __webpack_require__(49);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -19892,7 +20403,7 @@
 
 
 /***/ },
-/* 48 */
+/* 58 */
 /***/ function(module, exports) {
 
 	/**
@@ -19915,14 +20426,14 @@
 
 
 /***/ },
-/* 49 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	module.exports = {
 
@@ -19957,14 +20468,14 @@
 
 
 /***/ },
-/* 50 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	module.exports = {
 
@@ -19989,15 +20500,15 @@
 
 
 /***/ },
-/* 51 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 
-	var _ = __webpack_require__(31);
-	var xdrClient = __webpack_require__(52);
+	var _ = __webpack_require__(41);
+	var xdrClient = __webpack_require__(62);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 
@@ -20032,15 +20543,15 @@
 
 
 /***/ },
-/* 52 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 
-	var _ = __webpack_require__(31);
-	var Promise = __webpack_require__(39);
+	var _ = __webpack_require__(41);
+	var Promise = __webpack_require__(49);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -20075,14 +20586,14 @@
 
 
 /***/ },
-/* 53 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 
-	var _ = __webpack_require__(31);
+	var _ = __webpack_require__(41);
 
 	function Resource(url, params, actions, options) {
 

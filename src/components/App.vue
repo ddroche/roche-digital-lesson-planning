@@ -4,7 +4,7 @@
             .container
                 ul.nav.navbar-nav
                     li
-                        a(v-link="") Welcome{{ user.name }}!
+                        a(v-link="") <strong>Roche Digital Lesson Planning</strong>
                     li
                         a(v-link="'home'") Home
                     li

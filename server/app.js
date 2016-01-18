@@ -42,10 +42,11 @@ var jwtCheck = expressJWT({
   secret: config.secret
 });
 
-app.use('/lesson', lesson);
+
 app.use('/login', login);
 app.use('/signup', signup);
 app.use('/api/*', jwtCheck)
+app.use('/api/lesson', lesson);
 app.use('/api/users', users);
 app.use('/', routes);
 
